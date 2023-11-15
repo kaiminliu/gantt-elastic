@@ -51,7 +51,7 @@
           >
             <days-highlight></days-highlight>
             <grid></grid>
-            <dependency-lines :tasks="root.visibleTasks"></dependency-lines>
+            <dependency-lines v-if="!root.state.options.lineRenderTop"  :tasks="root.visibleTasks"></dependency-lines>
             <g
               class="gantt-elastic__chart-row-wrapper"
               :style="{ ...root.style['chart-row-wrapper'] }"
@@ -61,6 +61,7 @@
             >
               <component :task="task" :is="task.type"></component>
             </g>
+            <dependency-lines v-if="root.state.options.lineRenderTop"  :tasks="root.visibleTasks"></dependency-lines>
           </svg>
         </div>
       </div>

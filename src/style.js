@@ -269,6 +269,10 @@ export default function getStyle(fontSize = '12px', fontFamily = 'Arial, sans-se
     'chart-row-task-wrapper': {},
     'chart-row-task': {},
     'chart-row-task-polygon': {},
+    'chart-row-critical-task-polygon': {
+      stroke: '#e44b4b',
+      fill: '#e44b4b'
+    },
     'chart-row-progress-bar-wrapper': {},
     'chart-row-progress-bar': {},
     'chart-row-progress-bar-line': {
@@ -291,6 +295,11 @@ export default function getStyle(fontSize = '12px', fontFamily = 'Arial, sans-se
     'chart-dependency-lines-path': {
       fill: 'transparent',
       stroke: '#FFa00090',
+      'stroke-width': 2
+    },
+    'chart-dependency-lines-critical-path': {
+      fill: 'transparent',
+      stroke: '#e44b4b',
       'stroke-width': 2
     },
     'chart-scroll-container': {},

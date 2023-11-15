@@ -98,8 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-!function(t,n){ true?module.exports=n():undefined}(this,function(){"use strict";var t="millisecond",n="second",e="minute",r="hour",i="day",s="week",u="month",a="quarter",o="year",h=/^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/,f=/\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,c=function(t,n,e){var r=String(t);return!r||r.length>=n?t:""+Array(n+1-r.length).join(e)+t},d={s:c,z:function(t){var n=-t.utcOffset(),e=Math.abs(n),r=Math.floor(e/60),i=e%60;return(n<=0?"+":"-")+c(r,2,"0")+":"+c(i,2,"0")},m:function(t,n){var e=12*(n.year()-t.year())+(n.month()-t.month()),r=t.clone().add(e,u),i=n-r<0,s=t.clone().add(e+(i?-1:1),u);return Number(-(e+(n-r)/(i?r-s:s-r))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(h){return{M:u,y:o,w:s,d:i,h:r,m:e,s:n,ms:t,Q:a}[h]||String(h||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},$={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},l="en",m={};m[l]=$;var y=function(t){return t instanceof v},M=function(t,n,e){var r;if(!t)return l;if("string"==typeof t)m[t]&&(r=t),n&&(m[t]=n,r=t);else{var i=t.name;m[i]=t,r=i}return e||(l=r),r},g=function(t,n,e){if(y(t))return t.clone();var r=n?"string"==typeof n?{format:n,pl:e}:n:{};return r.date=t,new v(r)},D=d;D.l=M,D.i=y,D.w=function(t,n){return g(t,{locale:n.$L,utc:n.$u})};var v=function(){function c(t){this.$L=this.$L||M(t.locale,null,!0),this.parse(t)}var d=c.prototype;return d.parse=function(t){this.$d=function(t){var n=t.date,e=t.utc;if(null===n)return new Date(NaN);if(D.u(n))return new Date;if(n instanceof Date)return new Date(n);if("string"==typeof n&&!/Z$/i.test(n)){var r=n.match(h);if(r)return e?new Date(Date.UTC(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)):new Date(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)}return new Date(n)}(t),this.init()},d.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds()},d.$utils=function(){return D},d.isValid=function(){return!("Invalid Date"===this.$d.toString())},d.isSame=function(t,n){var e=g(t);return this.startOf(n)<=e&&e<=this.endOf(n)},d.isAfter=function(t,n){return g(t)<this.startOf(n)},d.isBefore=function(t,n){return this.endOf(n)<g(t)},d.$g=function(t,n,e){return D.u(t)?this[n]:this.set(e,t)},d.year=function(t){return this.$g(t,"$y",o)},d.month=function(t){return this.$g(t,"$M",u)},d.day=function(t){return this.$g(t,"$W",i)},d.date=function(t){return this.$g(t,"$D","date")},d.hour=function(t){return this.$g(t,"$H",r)},d.minute=function(t){return this.$g(t,"$m",e)},d.second=function(t){return this.$g(t,"$s",n)},d.millisecond=function(n){return this.$g(n,"$ms",t)},d.unix=function(){return Math.floor(this.valueOf()/1e3)},d.valueOf=function(){return this.$d.getTime()},d.startOf=function(t,a){var h=this,f=!!D.u(a)||a,c=D.p(t),d=function(t,n){var e=D.w(h.$u?Date.UTC(h.$y,n,t):new Date(h.$y,n,t),h);return f?e:e.endOf(i)},$=function(t,n){return D.w(h.toDate()[t].apply(h.toDate(),(f?[0,0,0,0]:[23,59,59,999]).slice(n)),h)},l=this.$W,m=this.$M,y=this.$D,M="set"+(this.$u?"UTC":"");switch(c){case o:return f?d(1,0):d(31,11);case u:return f?d(1,m):d(0,m+1);case s:var g=this.$locale().weekStart||0,v=(l<g?l+7:l)-g;return d(f?y-v:y+(6-v),m);case i:case"date":return $(M+"Hours",0);case r:return $(M+"Minutes",1);case e:return $(M+"Seconds",2);case n:return $(M+"Milliseconds",3);default:return this.clone()}},d.endOf=function(t){return this.startOf(t,!1)},d.$set=function(s,a){var h,f=D.p(s),c="set"+(this.$u?"UTC":""),d=(h={},h[i]=c+"Date",h.date=c+"Date",h[u]=c+"Month",h[o]=c+"FullYear",h[r]=c+"Hours",h[e]=c+"Minutes",h[n]=c+"Seconds",h[t]=c+"Milliseconds",h)[f],$=f===i?this.$D+(a-this.$W):a;if(f===u||f===o){var l=this.clone().set("date",1);l.$d[d]($),l.init(),this.$d=l.set("date",Math.min(this.$D,l.daysInMonth())).toDate()}else d&&this.$d[d]($);return this.init(),this},d.set=function(t,n){return this.clone().$set(t,n)},d.get=function(t){return this[D.p(t)]()},d.add=function(t,a){var h,f=this;t=Number(t);var c=D.p(a),d=function(n){var e=g(f);return D.w(e.date(e.date()+Math.round(n*t)),f)};if(c===u)return this.set(u,this.$M+t);if(c===o)return this.set(o,this.$y+t);if(c===i)return d(1);if(c===s)return d(7);var $=(h={},h[e]=6e4,h[r]=36e5,h[n]=1e3,h)[c]||1,l=this.valueOf()+t*$;return D.w(l,this)},d.subtract=function(t,n){return this.add(-1*t,n)},d.format=function(t){var n=this;if(!this.isValid())return"Invalid Date";var e=t||"YYYY-MM-DDTHH:mm:ssZ",r=D.z(this),i=this.$locale(),s=this.$H,u=this.$m,a=this.$M,o=i.weekdays,h=i.months,c=function(t,r,i,s){return t&&(t[r]||t(n,e))||i[r].substr(0,s)},d=function(t){return D.s(s%12||12,t,"0")},$=i.meridiem||function(t,n,e){var r=t<12?"AM":"PM";return e?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:a+1,MM:D.s(a+1,2,"0"),MMM:c(i.monthsShort,a,h,3),MMMM:h[a]||h(this,e),D:this.$D,DD:D.s(this.$D,2,"0"),d:String(this.$W),dd:c(i.weekdaysMin,this.$W,o,2),ddd:c(i.weekdaysShort,this.$W,o,3),dddd:o[this.$W],H:String(s),HH:D.s(s,2,"0"),h:d(1),hh:d(2),a:$(s,u,!0),A:$(s,u,!1),m:String(u),mm:D.s(u,2,"0"),s:String(this.$s),ss:D.s(this.$s,2,"0"),SSS:D.s(this.$ms,3,"0"),Z:r};return e.replace(f,function(t,n){return n||l[t]||r.replace(":","")})},d.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},d.diff=function(t,h,f){var c,d=D.p(h),$=g(t),l=6e4*($.utcOffset()-this.utcOffset()),m=this-$,y=D.m(this,$);return y=(c={},c[o]=y/12,c[u]=y,c[a]=y/3,c[s]=(m-l)/6048e5,c[i]=(m-l)/864e5,c[r]=m/36e5,c[e]=m/6e4,c[n]=m/1e3,c)[d]||m,f?y:D.a(y)},d.daysInMonth=function(){return this.endOf(u).$D},d.$locale=function(){return m[this.$L]},d.locale=function(t,n){if(!t)return this.$L;var e=this.clone();return e.$L=M(t,n,!0),e},d.clone=function(){return D.w(this.toDate(),this)},d.toDate=function(){return new Date(this.$d)},d.toJSON=function(){return this.isValid()?this.toISOString():null},d.toISOString=function(){return this.$d.toISOString()},d.toString=function(){return this.$d.toUTCString()},c}();return g.prototype=v.prototype,g.extend=function(t,n){return t(n,v,g),g},g.locale=M,g.isDayjs=y,g.unix=function(t){return g(1e3*t)},g.en=m[l],g.Ls=m,g});
-
+!function(t,e){ true?module.exports=e():undefined}(this,(function(){"use strict";var t=1e3,e=6e4,n=36e5,r="millisecond",i="second",s="minute",u="hour",a="day",o="week",c="month",f="quarter",h="year",d="date",l="Invalid Date",$=/^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/,y=/\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,M={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_"),ordinal:function(t){var e=["th","st","nd","rd"],n=t%100;return"["+t+(e[(n-20)%10]||e[n]||e[0])+"]"}},m=function(t,e,n){var r=String(t);return!r||r.length>=e?t:""+Array(e+1-r.length).join(n)+t},v={s:m,z:function(t){var e=-t.utcOffset(),n=Math.abs(e),r=Math.floor(n/60),i=n%60;return(e<=0?"+":"-")+m(r,2,"0")+":"+m(i,2,"0")},m:function t(e,n){if(e.date()<n.date())return-t(n,e);var r=12*(n.year()-e.year())+(n.month()-e.month()),i=e.clone().add(r,c),s=n-i<0,u=e.clone().add(r+(s?-1:1),c);return+(-(r+(n-i)/(s?i-u:u-i))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(t){return{M:c,y:h,w:o,d:a,D:d,h:u,m:s,s:i,ms:r,Q:f}[t]||String(t||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},g="en",D={};D[g]=M;var p="$isDayjsObject",S=function(t){return t instanceof _||!(!t||!t[p])},w=function t(e,n,r){var i;if(!e)return g;if("string"==typeof e){var s=e.toLowerCase();D[s]&&(i=s),n&&(D[s]=n,i=s);var u=e.split("-");if(!i&&u.length>1)return t(u[0])}else{var a=e.name;D[a]=e,i=a}return!r&&i&&(g=i),i||!r&&g},O=function(t,e){if(S(t))return t.clone();var n="object"==typeof e?e:{};return n.date=t,n.args=arguments,new _(n)},b=v;b.l=w,b.i=S,b.w=function(t,e){return O(t,{locale:e.$L,utc:e.$u,x:e.$x,$offset:e.$offset})};var _=function(){function M(t){this.$L=w(t.locale,null,!0),this.parse(t),this.$x=this.$x||t.x||{},this[p]=!0}var m=M.prototype;return m.parse=function(t){this.$d=function(t){var e=t.date,n=t.utc;if(null===e)return new Date(NaN);if(b.u(e))return new Date;if(e instanceof Date)return new Date(e);if("string"==typeof e&&!/Z$/i.test(e)){var r=e.match($);if(r){var i=r[2]-1||0,s=(r[7]||"0").substring(0,3);return n?new Date(Date.UTC(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)):new Date(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)}}return new Date(e)}(t),this.init()},m.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds()},m.$utils=function(){return b},m.isValid=function(){return!(this.$d.toString()===l)},m.isSame=function(t,e){var n=O(t);return this.startOf(e)<=n&&n<=this.endOf(e)},m.isAfter=function(t,e){return O(t)<this.startOf(e)},m.isBefore=function(t,e){return this.endOf(e)<O(t)},m.$g=function(t,e,n){return b.u(t)?this[e]:this.set(n,t)},m.unix=function(){return Math.floor(this.valueOf()/1e3)},m.valueOf=function(){return this.$d.getTime()},m.startOf=function(t,e){var n=this,r=!!b.u(e)||e,f=b.p(t),l=function(t,e){var i=b.w(n.$u?Date.UTC(n.$y,e,t):new Date(n.$y,e,t),n);return r?i:i.endOf(a)},$=function(t,e){return b.w(n.toDate()[t].apply(n.toDate("s"),(r?[0,0,0,0]:[23,59,59,999]).slice(e)),n)},y=this.$W,M=this.$M,m=this.$D,v="set"+(this.$u?"UTC":"");switch(f){case h:return r?l(1,0):l(31,11);case c:return r?l(1,M):l(0,M+1);case o:var g=this.$locale().weekStart||0,D=(y<g?y+7:y)-g;return l(r?m-D:m+(6-D),M);case a:case d:return $(v+"Hours",0);case u:return $(v+"Minutes",1);case s:return $(v+"Seconds",2);case i:return $(v+"Milliseconds",3);default:return this.clone()}},m.endOf=function(t){return this.startOf(t,!1)},m.$set=function(t,e){var n,o=b.p(t),f="set"+(this.$u?"UTC":""),l=(n={},n[a]=f+"Date",n[d]=f+"Date",n[c]=f+"Month",n[h]=f+"FullYear",n[u]=f+"Hours",n[s]=f+"Minutes",n[i]=f+"Seconds",n[r]=f+"Milliseconds",n)[o],$=o===a?this.$D+(e-this.$W):e;if(o===c||o===h){var y=this.clone().set(d,1);y.$d[l]($),y.init(),this.$d=y.set(d,Math.min(this.$D,y.daysInMonth())).$d}else l&&this.$d[l]($);return this.init(),this},m.set=function(t,e){return this.clone().$set(t,e)},m.get=function(t){return this[b.p(t)]()},m.add=function(r,f){var d,l=this;r=Number(r);var $=b.p(f),y=function(t){var e=O(l);return b.w(e.date(e.date()+Math.round(t*r)),l)};if($===c)return this.set(c,this.$M+r);if($===h)return this.set(h,this.$y+r);if($===a)return y(1);if($===o)return y(7);var M=(d={},d[s]=e,d[u]=n,d[i]=t,d)[$]||1,m=this.$d.getTime()+r*M;return b.w(m,this)},m.subtract=function(t,e){return this.add(-1*t,e)},m.format=function(t){var e=this,n=this.$locale();if(!this.isValid())return n.invalidDate||l;var r=t||"YYYY-MM-DDTHH:mm:ssZ",i=b.z(this),s=this.$H,u=this.$m,a=this.$M,o=n.weekdays,c=n.months,f=n.meridiem,h=function(t,n,i,s){return t&&(t[n]||t(e,r))||i[n].slice(0,s)},d=function(t){return b.s(s%12||12,t,"0")},$=f||function(t,e,n){var r=t<12?"AM":"PM";return n?r.toLowerCase():r};return r.replace(y,(function(t,r){return r||function(t){switch(t){case"YY":return String(e.$y).slice(-2);case"YYYY":return b.s(e.$y,4,"0");case"M":return a+1;case"MM":return b.s(a+1,2,"0");case"MMM":return h(n.monthsShort,a,c,3);case"MMMM":return h(c,a);case"D":return e.$D;case"DD":return b.s(e.$D,2,"0");case"d":return String(e.$W);case"dd":return h(n.weekdaysMin,e.$W,o,2);case"ddd":return h(n.weekdaysShort,e.$W,o,3);case"dddd":return o[e.$W];case"H":return String(s);case"HH":return b.s(s,2,"0");case"h":return d(1);case"hh":return d(2);case"a":return $(s,u,!0);case"A":return $(s,u,!1);case"m":return String(u);case"mm":return b.s(u,2,"0");case"s":return String(e.$s);case"ss":return b.s(e.$s,2,"0");case"SSS":return b.s(e.$ms,3,"0");case"Z":return i}return null}(t)||i.replace(":","")}))},m.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},m.diff=function(r,d,l){var $,y=this,M=b.p(d),m=O(r),v=(m.utcOffset()-this.utcOffset())*e,g=this-m,D=function(){return b.m(y,m)};switch(M){case h:$=D()/12;break;case c:$=D();break;case f:$=D()/3;break;case o:$=(g-v)/6048e5;break;case a:$=(g-v)/864e5;break;case u:$=g/n;break;case s:$=g/e;break;case i:$=g/t;break;default:$=g}return l?$:b.a($)},m.daysInMonth=function(){return this.endOf(c).$D},m.$locale=function(){return D[this.$L]},m.locale=function(t,e){if(!t)return this.$L;var n=this.clone(),r=w(t,e,!0);return r&&(n.$L=r),n},m.clone=function(){return b.w(this.$d,this)},m.toDate=function(){return new Date(this.valueOf())},m.toJSON=function(){return this.isValid()?this.toISOString():null},m.toISOString=function(){return this.$d.toISOString()},m.toString=function(){return this.$d.toUTCString()},M}(),k=_.prototype;return O.prototype=k,[["$ms",r],["$s",i],["$m",s],["$H",u],["$W",a],["$M",c],["$y",h],["$D",d]].forEach((function(t){k[t[1]]=function(e){return this.$g(e,t[0],t[1])}})),O.extend=function(t,e){return t.$i||(t(e,_,O),t.$i=!0),O},O.locale=w,O.isDayjs=S,O.unix=function(t){return O(1e3*t)},O.en=D[g],O.Ls=D,O.p={},O}));
 
 /***/ }),
 /* 1 */
@@ -109,11 +108,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 // load the styles
 var content = __webpack_require__(6);
+if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(9).default
-var update = add("c3e5085c", content, false, {});
+var update = add("2e8385d4", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -1090,10 +1090,10 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_GanttElastic_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_GanttElastic_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_GanttElastic_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_GanttElastic_vue_vue_type_style_index_0_id_986f7942_prod_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_GanttElastic_vue_vue_type_style_index_0_id_986f7942_prod_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_GanttElastic_vue_vue_type_style_index_0_id_986f7942_prod_lang_css__WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_GanttElastic_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
 
 /***/ }),
 /* 6 */
@@ -1104,7 +1104,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n[class^='gantt-elastic'],\n[class*=' gantt-elastic'] {\n  box-sizing: border-box;\n}\n.gantt-elastic__main-view svg {\n  display: block;\n}\n.gantt-elastic__grid-horizontal-line,\n.gantt-elastic__grid-vertical-line {\n  stroke: #a0a0a0;\n  stroke-width: 1;\n}\nforeignObject > * {\n  margin: 0px;\n}\n.gantt-elastic .p-2 {\n  padding: 10rem;\n}\n.gantt-elastic__main-view-main-container,\n.gantt-elastic__main-view-container {\n  overflow: hidden;\n  max-width: 100%;\n}\n.gantt-elastic__task-list-header-column:last-of-type {\n  border-right: 1px solid #00000050;\n}\n.gantt-elastic__task-list-item:last-of-type {\n  border-bottom: 1px solid #00000050;\n}\n.gantt-elastic__task-list-item-value-wrapper:hover {\n  overflow: visible !important;\n}\n.gantt-elastic__task-list-item-value-wrapper:hover > .gantt-elastic__task-list-item-value-container {\n  position: relative;\n  overflow: visible !important;\n}\n.gantt-elastic__task-list-item-value-wrapper:hover > .gantt-elastic__task-list-item-value {\n  position: absolute;\n}\n", ""]);
+exports.push([module.i, "\n[class^='gantt-elastic'],\r\n[class*=' gantt-elastic'] {\r\n  box-sizing: border-box;\n}\n.gantt-elastic__main-view svg {\r\n  display: block;\n}\n.gantt-elastic__grid-horizontal-line,\r\n.gantt-elastic__grid-vertical-line {\r\n  stroke: #a0a0a0;\r\n  stroke-width: 1;\n}\nforeignObject > * {\r\n  margin: 0px;\n}\n.gantt-elastic .p-2 {\r\n  padding: 10rem;\n}\n.gantt-elastic__main-view-main-container,\r\n.gantt-elastic__main-view-container {\r\n  overflow: hidden;\r\n  max-width: 100%;\n}\n.gantt-elastic__task-list-header-column:last-of-type {\r\n  border-right: 1px solid #00000050;\n}\n.gantt-elastic__task-list-item:last-of-type {\r\n  border-bottom: 1px solid #00000050;\n}\n.gantt-elastic__task-list-item-value-wrapper:hover {\r\n  overflow: visible !important;\n}\n.gantt-elastic__task-list-item-value-wrapper:hover > .gantt-elastic__task-list-item-value-container {\r\n  position: relative;\r\n  overflow: visible !important;\n}\n.gantt-elastic__task-list-item-value-wrapper:hover > .gantt-elastic__task-list-item-value {\r\n  position: absolute;\n}\r\n", ""]);
 
 // exports
 
@@ -1196,13 +1196,19 @@ function toComment(sourceMap) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/GanttElastic.vue?vue&type=template&id=02c6304c&
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "mergeDeep", function() { return /* reexport */ mergeDeep; });
+__webpack_require__.d(__webpack_exports__, "mergeDeepReactive", function() { return /* reexport */ mergeDeepReactive; });
+__webpack_require__.d(__webpack_exports__, "notEqualDeep", function() { return /* reexport */ notEqualDeep; });
+
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/GanttElastic.vue?vue&type=template&id=986f7942
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c,
+    _setup = _vm._self._setupProxy
   return _c(
     "div",
     { staticClass: "gantt-elastic", staticStyle: { width: "100%" } },
@@ -1211,7 +1217,7 @@ var render = function() {
       _vm._v(" "),
       _c("main-view", { ref: "mainView" }),
       _vm._v(" "),
-      _vm._t("footer")
+      _vm._t("footer"),
     ],
     2
   )
@@ -1220,7 +1226,7 @@ var staticRenderFns = []
 render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/GanttElastic.vue?vue&type=template&id=02c6304c&
+// CONCATENATED MODULE: ./src/GanttElastic.vue?vue&type=template&id=986f7942
 
 // EXTERNAL MODULE: external "Vue"
 var external_Vue_ = __webpack_require__(2);
@@ -1230,25 +1236,25 @@ var external_Vue_default = /*#__PURE__*/__webpack_require__.n(external_Vue_);
 var dayjs_min = __webpack_require__(0);
 var dayjs_min_default = /*#__PURE__*/__webpack_require__.n(dayjs_min);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/MainView.vue?vue&type=template&id=0bc4212e&
-var MainViewvue_type_template_id_0bc4212e_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/MainView.vue?vue&type=template&id=606f6fb6
+var MainViewvue_type_template_id_606f6fb6_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "div",
     {
       staticClass: "gantt-elastic__main-view",
-      style: Object.assign({}, _vm.root.style["main-view"])
+      style: { ..._vm.root.style["main-view"] },
     },
     [
       _c(
         "div",
         {
           staticClass: "gantt-elastic__main-container-wrapper",
-          style: Object.assign({}, _vm.root.style["main-container-wrapper"], {
-            height: _vm.root.state.options.height + "px"
-          })
+          style: {
+            ..._vm.root.style["main-container-wrapper"],
+            height: _vm.root.state.options.height + "px",
+          },
         },
         [
           _c(
@@ -1256,18 +1262,19 @@ var MainViewvue_type_template_id_0bc4212e_render = function() {
             {
               ref: "mainView",
               staticClass: "gantt-elastic__main-container",
-              style: Object.assign({}, _vm.root.style["main-container"], {
+              style: {
+                ..._vm.root.style["main-container"],
                 width: _vm.root.state.options.clientWidth + "px",
-                height: _vm.root.state.options.height + "px"
-              })
+                height: _vm.root.state.options.height + "px",
+              },
             },
             [
               _c(
                 "div",
                 {
                   staticClass: "gantt-elastic__container",
-                  style: Object.assign({}, _vm.root.style["container"]),
-                  on: { mousemove: _vm.mouseMove, mouseup: _vm.mouseUp }
+                  style: { ..._vm.root.style["container"] },
+                  on: { mousemove: _vm.mouseMove, mouseup: _vm.mouseUp },
                 },
                 [
                   _c(
@@ -1278,20 +1285,17 @@ var MainViewvue_type_template_id_0bc4212e_render = function() {
                           name: "show",
                           rawName: "v-show",
                           value: _vm.root.state.options.taskList.display,
-                          expression: "root.state.options.taskList.display"
-                        }
+                          expression: "root.state.options.taskList.display",
+                        },
                       ],
                       ref: "taskList",
                       staticClass: "gantt-elastic__task-list-container",
-                      style: Object.assign(
-                        {},
-                        _vm.root.style["task-list-container"],
-                        {
-                          width:
-                            _vm.root.state.options.taskList.finalWidth + "px",
-                          height: _vm.root.state.options.height + "px"
-                        }
-                      )
+                      style: {
+                        ..._vm.root.style["task-list-container"],
+                        width:
+                          _vm.root.state.options.taskList.finalWidth + "px",
+                        height: _vm.root.state.options.height + "px",
+                      },
                     },
                     [_c("task-list")],
                     1
@@ -1302,34 +1306,31 @@ var MainViewvue_type_template_id_0bc4212e_render = function() {
                     {
                       ref: "chartContainer",
                       staticClass: "gantt-elastic__main-view-container",
-                      style: Object.assign(
-                        {},
-                        _vm.root.style["main-view-container"]
-                      ),
+                      style: { ..._vm.root.style["main-view-container"] },
                       on: {
                         mousedown: _vm.chartMouseDown,
                         touchstart: _vm.chartMouseDown,
                         mouseup: _vm.chartMouseUp,
                         touchend: _vm.chartMouseUp,
-                        mousemove: function($event) {
+                        mousemove: function ($event) {
                           $event.preventDefault()
-                          return _vm.chartMouseMove($event)
+                          return _vm.chartMouseMove.apply(null, arguments)
                         },
-                        touchmove: function($event) {
+                        touchmove: function ($event) {
                           $event.preventDefault()
-                          return _vm.chartMouseMove($event)
+                          return _vm.chartMouseMove.apply(null, arguments)
                         },
-                        wheel: function($event) {
+                        wheel: function ($event) {
                           $event.preventDefault()
-                          return _vm.chartWheel($event)
-                        }
-                      }
+                          return _vm.chartWheel.apply(null, arguments)
+                        },
+                      },
                     },
                     [_c("chart")],
                     1
-                  )
+                  ),
                 ]
-              )
+              ),
             ]
           ),
           _vm._v(" "),
@@ -1339,24 +1340,23 @@ var MainViewvue_type_template_id_0bc4212e_render = function() {
               ref: "chartScrollContainerVertical",
               staticClass:
                 "gantt-elastic__chart-scroll-container gantt-elastic__chart-scroll-container--vertical",
-              style: Object.assign(
-                {},
-                _vm.root.style["chart-scroll-container"],
-                _vm.root.style["chart-scroll-container--vertical"],
-                _vm.verticalStyle
-              ),
-              on: { scroll: _vm.onVerticalScroll }
+              style: {
+                ..._vm.root.style["chart-scroll-container"],
+                ..._vm.root.style["chart-scroll-container--vertical"],
+                ..._vm.verticalStyle,
+              },
+              on: { scroll: _vm.onVerticalScroll },
             },
             [
               _c("div", {
                 staticClass: "gantt-elastic__chart-scroll--vertical",
                 style: {
                   width: "1px",
-                  height: _vm.root.state.options.allVisibleTasksHeight + "px"
-                }
-              })
+                  height: _vm.root.state.options.allVisibleTasksHeight + "px",
+                },
+              }),
             ]
-          )
+          ),
         ]
       ),
       _vm._v(" "),
@@ -1366,35 +1366,36 @@ var MainViewvue_type_template_id_0bc4212e_render = function() {
           ref: "chartScrollContainerHorizontal",
           staticClass:
             "gantt-elastic__chart-scroll-container gantt-elastic__chart-scroll-container--horizontal",
-          style: Object.assign(
-            {},
-            _vm.root.style["chart-scroll-container"],
-            _vm.root.style["chart-scroll-container--horizontal"],
-            { marginLeft: _vm.getMarginLeft }
-          ),
-          on: { scroll: _vm.onHorizontalScroll }
+          style: {
+            ..._vm.root.style["chart-scroll-container"],
+            ..._vm.root.style["chart-scroll-container--horizontal"],
+            marginLeft: _vm.getMarginLeft,
+          },
+          on: { scroll: _vm.onHorizontalScroll },
         },
         [
           _c("div", {
             staticClass: "gantt-elastic__chart-scroll--horizontal",
-            style: { height: "1px", width: _vm.root.state.options.width + "px" }
-          })
+            style: {
+              height: "1px",
+              width: _vm.root.state.options.width + "px",
+            },
+          }),
         ]
-      )
+      ),
     ]
   )
 }
-var MainViewvue_type_template_id_0bc4212e_staticRenderFns = []
-MainViewvue_type_template_id_0bc4212e_render._withStripped = true
+var MainViewvue_type_template_id_606f6fb6_staticRenderFns = []
+MainViewvue_type_template_id_606f6fb6_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/MainView.vue?vue&type=template&id=0bc4212e&
+// CONCATENATED MODULE: ./src/components/MainView.vue?vue&type=template&id=606f6fb6
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskList.vue?vue&type=template&id=6e11f12f&
-var TaskListvue_type_template_id_6e11f12f_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskList.vue?vue&type=template&id=0ddd1532
+var TaskListvue_type_template_id_0ddd1532_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "div",
     {
@@ -1403,15 +1404,16 @@ var TaskListvue_type_template_id_6e11f12f_render = function() {
           name: "show",
           rawName: "v-show",
           value: _vm.root.state.options.taskList.display,
-          expression: "root.state.options.taskList.display"
-        }
+          expression: "root.state.options.taskList.display",
+        },
       ],
       ref: "taskListWrapper",
       staticClass: "gantt-elastic__task-list-wrapper",
-      style: Object.assign({}, _vm.root.style["task-list-wrapper"], {
+      style: {
+        ..._vm.root.style["task-list-wrapper"],
         width: "100%",
-        height: "100%"
-      })
+        height: "100%",
+      },
     },
     [
       _c(
@@ -1419,7 +1421,7 @@ var TaskListvue_type_template_id_6e11f12f_render = function() {
         {
           ref: "taskList",
           staticClass: "gantt-elastic__task-list",
-          style: Object.assign({}, _vm.root.style["task-list"])
+          style: { ..._vm.root.style["task-list"] },
         },
         [
           _c("task-list-header"),
@@ -1429,64 +1431,64 @@ var TaskListvue_type_template_id_6e11f12f_render = function() {
             {
               ref: "taskListItems",
               staticClass: "gantt-elastic__task-list-items",
-              style: Object.assign({}, _vm.root.style["task-list-items"], {
-                height: _vm.root.state.options.rowsHeight + "px"
-              })
+              style: {
+                ..._vm.root.style["task-list-items"],
+                height: _vm.root.state.options.rowsHeight + "px",
+              },
             },
-            _vm._l(_vm.root.visibleTasks, function(task) {
+            _vm._l(_vm.root.visibleTasks, function (task) {
               return _c("task-list-item", {
                 key: task.id,
-                attrs: { task: task }
+                attrs: { task: task },
               })
             }),
             1
-          )
+          ),
         ],
         1
-      )
+      ),
     ]
   )
 }
-var TaskListvue_type_template_id_6e11f12f_staticRenderFns = []
-TaskListvue_type_template_id_6e11f12f_render._withStripped = true
+var TaskListvue_type_template_id_0ddd1532_staticRenderFns = []
+TaskListvue_type_template_id_0ddd1532_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/TaskList/TaskList.vue?vue&type=template&id=6e11f12f&
+// CONCATENATED MODULE: ./src/components/TaskList/TaskList.vue?vue&type=template&id=0ddd1532
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskListHeader.vue?vue&type=template&id=aefdd7c8&
-var TaskListHeadervue_type_template_id_aefdd7c8_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskListHeader.vue?vue&type=template&id=c7a173ba
+var TaskListHeadervue_type_template_id_c7a173ba_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "div",
     {
       staticClass: "gantt-elastic__task-list-header",
-      style: Object.assign({}, _vm.root.style["task-list-header"], {
-        height: _vm.root.state.options.calendar.height + "px",
-        "margin-bottom": _vm.root.state.options.calendar.gap + "px"
-      })
+      style: {
+        ..._vm.root.style["task-list-header"],
+        height: `${_vm.root.state.options.calendar.height}px`,
+        "margin-bottom": `${_vm.root.state.options.calendar.gap}px`,
+      },
     },
-    _vm._l(_vm.root.getTaskListColumns, function(column) {
+    _vm._l(_vm.root.getTaskListColumns, function (column) {
       return _c(
         "div",
         {
           key: column._id,
           staticClass: "gantt-elastic__task-list-header-column",
-          style: Object.assign(
-            {},
-            _vm.root.style["task-list-header-column"],
-            column.style["task-list-header-column"],
-            _vm.getStyle(column)
-          )
+          style: {
+            ..._vm.root.style["task-list-header-column"],
+            ...column.style["task-list-header-column"],
+            ..._vm.getStyle(column),
+          },
         },
         [
           column.expander
             ? _c("task-list-expander", {
                 attrs: {
                   tasks: _vm.collapsible,
-                  options: _vm.root.state.options.taskList.expander
-                }
+                  options: _vm.root.state.options.taskList.expander,
+                },
               })
             : _vm._e(),
           _vm._v(" "),
@@ -1494,13 +1496,12 @@ var TaskListHeadervue_type_template_id_aefdd7c8_render = function() {
             "div",
             {
               staticClass: "gantt-elastic__task-list-header-label",
-              style: Object.assign(
-                {},
-                _vm.root.style["task-list-header-label"],
-                column.style["task-list-header-label"]
-              ),
+              style: {
+                ..._vm.root.style["task-list-header-label"],
+                ...column.style["task-list-header-label"],
+              },
               attrs: { column: column },
-              on: { mouseup: _vm.resizerMouseUp }
+              on: { mouseup: _vm.resizerMouseUp },
             },
             [_vm._v("\n      " + _vm._s(column.label) + "\n    ")]
           ),
@@ -1509,60 +1510,55 @@ var TaskListHeadervue_type_template_id_aefdd7c8_render = function() {
             "div",
             {
               staticClass: "gantt-elastic__task-list-header-resizer-wrapper",
-              style: Object.assign(
-                {},
-                _vm.root.style["task-list-header-resizer-wrapper"],
-                column.style["task-list-header-resizer-wrapper"]
-              ),
+              style: {
+                ..._vm.root.style["task-list-header-resizer-wrapper"],
+                ...column.style["task-list-header-resizer-wrapper"],
+              },
               attrs: { column: column },
               on: {
-                mousedown: function($event) {
+                mousedown: function ($event) {
                   return _vm.resizerMouseDown($event, column)
-                }
-              }
+                },
+              },
             },
             [
               _c(
                 "div",
                 {
                   staticClass: "gantt-elastic__task-list-header-resizer",
-                  style: Object.assign(
-                    {},
-                    _vm.root.style["task-list-header-resizer"],
-                    column.style["task-list-header-resizer"]
-                  )
+                  style: {
+                    ..._vm.root.style["task-list-header-resizer"],
+                    ...column.style["task-list-header-resizer"],
+                  },
                 },
                 [
                   _c("div", {
                     staticClass: "gantt-elastic__task-list-header-resizer-dot",
-                    style: Object.assign(
-                      {},
-                      _vm.root.style["task-list-header-resizer-dot"],
-                      column.style["task-list-header-resizer-dot"]
-                    )
+                    style: {
+                      ..._vm.root.style["task-list-header-resizer-dot"],
+                      ...column.style["task-list-header-resizer-dot"],
+                    },
                   }),
                   _vm._v(" "),
                   _c("div", {
                     staticClass: "gantt-elastic__task-list-header-resizer-dot",
-                    style: Object.assign(
-                      {},
-                      _vm.root.style["task-list-header-resizer-dot"],
-                      column.style["task-list-header-resizer-dot"]
-                    )
+                    style: {
+                      ..._vm.root.style["task-list-header-resizer-dot"],
+                      ...column.style["task-list-header-resizer-dot"],
+                    },
                   }),
                   _vm._v(" "),
                   _c("div", {
                     staticClass: "gantt-elastic__task-list-header-resizer-dot",
-                    style: Object.assign(
-                      {},
-                      _vm.root.style["task-list-header-resizer-dot"],
-                      column.style["task-list-header-resizer-dot"]
-                    )
-                  })
+                    style: {
+                      ..._vm.root.style["task-list-header-resizer-dot"],
+                      ...column.style["task-list-header-resizer-dot"],
+                    },
+                  }),
                 ]
-              )
+              ),
             ]
-          )
+          ),
         ],
         1
       )
@@ -1570,26 +1566,24 @@ var TaskListHeadervue_type_template_id_aefdd7c8_render = function() {
     0
   )
 }
-var TaskListHeadervue_type_template_id_aefdd7c8_staticRenderFns = []
-TaskListHeadervue_type_template_id_aefdd7c8_render._withStripped = true
+var TaskListHeadervue_type_template_id_c7a173ba_staticRenderFns = []
+TaskListHeadervue_type_template_id_c7a173ba_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/TaskList/TaskListHeader.vue?vue&type=template&id=aefdd7c8&
+// CONCATENATED MODULE: ./src/components/TaskList/TaskListHeader.vue?vue&type=template&id=c7a173ba
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Expander.vue?vue&type=template&id=09a21177&
-var Expandervue_type_template_id_09a21177_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Expander.vue?vue&type=template&id=09ed5944
+var Expandervue_type_template_id_09ed5944_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "div",
     {
       class: _vm.getClassPrefix() + "-wrapper",
-      style: Object.assign(
-        {},
-        _vm.root.style[_vm.getClassPrefix(false) + "-wrapper"],
-        _vm.style
-      )
+      style: {
+        ..._vm.root.style[_vm.getClassPrefix(false) + "-wrapper"],
+        ..._vm.style,
+      },
     },
     [
       _vm.allChildren.length
@@ -1597,127 +1591,73 @@ var Expandervue_type_template_id_09a21177_render = function() {
             "svg",
             {
               class: _vm.getClassPrefix() + "-content",
-              style: Object.assign(
-                {},
-                _vm.root.style[_vm.getClassPrefix(false) + "-content"]
-              ),
+              style: {
+                ..._vm.root.style[_vm.getClassPrefix(false) + "-content"],
+              },
               attrs: { width: _vm.options.size, height: _vm.options.size },
-              on: { click: _vm.toggle }
+              on: { click: _vm.toggle },
             },
             [
               _c("rect", {
                 class: _vm.getClassPrefix() + "-border",
-                style: Object.assign(
-                  {},
-                  _vm.root.style[_vm.getClassPrefix(false) + "-border"],
-                  _vm.borderStyle
-                ),
+                style: {
+                  ..._vm.root.style[_vm.getClassPrefix(false) + "-border"],
+                  ..._vm.borderStyle,
+                },
                 attrs: {
                   x: _vm.border,
                   y: _vm.border,
                   width: _vm.options.size - _vm.border * 2,
                   height: _vm.options.size - _vm.border * 2,
                   rx: "2",
-                  ry: "2"
-                }
+                  ry: "2",
+                },
               }),
               _vm._v(" "),
               _vm.allChildren.length
                 ? _c("line", {
                     class: _vm.getClassPrefix() + "-line",
-                    style: Object.assign(
-                      {},
-                      _vm.root.style[_vm.getClassPrefix(false) + "-line"]
-                    ),
+                    style: {
+                      ..._vm.root.style[_vm.getClassPrefix(false) + "-line"],
+                    },
                     attrs: {
                       x1: _vm.lineOffset,
                       y1: _vm.options.size / 2,
                       x2: _vm.options.size - _vm.lineOffset,
-                      y2: _vm.options.size / 2
-                    }
+                      y2: _vm.options.size / 2,
+                    },
                   })
                 : _vm._e(),
               _vm._v(" "),
               _vm.collapsed
                 ? _c("line", {
                     class: _vm.getClassPrefix() + "-line",
-                    style: Object.assign(
-                      {},
-                      _vm.root.style[_vm.getClassPrefix(false) + "-line"]
-                    ),
+                    style: {
+                      ..._vm.root.style[_vm.getClassPrefix(false) + "-line"],
+                    },
                     attrs: {
                       x1: _vm.options.size / 2,
                       y1: _vm.lineOffset,
                       x2: _vm.options.size / 2,
-                      y2: _vm.options.size - _vm.lineOffset
-                    }
+                      y2: _vm.options.size - _vm.lineOffset,
+                    },
                   })
-                : _vm._e()
+                : _vm._e(),
             ]
           )
-        : _vm._e()
+        : _vm._e(),
     ]
   )
 }
-var Expandervue_type_template_id_09a21177_staticRenderFns = []
-Expandervue_type_template_id_09a21177_render._withStripped = true
+var Expandervue_type_template_id_09ed5944_staticRenderFns = []
+Expandervue_type_template_id_09ed5944_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Expander.vue?vue&type=template&id=09a21177&
+// CONCATENATED MODULE: ./src/components/Expander.vue?vue&type=template&id=09ed5944
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Expander.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Expander.vue?vue&type=script&lang=js
 
-/* harmony default export */ var Expandervue_type_script_lang_js_ = ({
+/* harmony default export */ var Expandervue_type_script_lang_js = ({
   name: 'Expander',
   inject: ['root'],
   props: ['tasks', 'options', 'type'],
@@ -1799,8 +1739,8 @@ Expandervue_type_template_id_09a21177_render._withStripped = true
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Expander.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_Expandervue_type_script_lang_js_ = (Expandervue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Expander.vue?vue&type=script&lang=js
+ /* harmony default export */ var components_Expandervue_type_script_lang_js = (Expandervue_type_script_lang_js); 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
 
@@ -1808,20 +1748,19 @@ Expandervue_type_template_id_09a21177_render._withStripped = true
 // This module is a runtime utility for cleaner component module output and will
 // be included in the final webpack user bundle.
 
-function normalizeComponent (
+function normalizeComponent(
   scriptExports,
   render,
   staticRenderFns,
   functionalTemplate,
   injectStyles,
   scopeId,
-  moduleIdentifier, /* server only */
+  moduleIdentifier /* server only */,
   shadowMode /* vue-cli only */
 ) {
   // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
+  var options =
+    typeof scriptExports === 'function' ? scriptExports.options : scriptExports
 
   // render functions
   if (render) {
@@ -1841,7 +1780,8 @@ function normalizeComponent (
   }
 
   var hook
-  if (moduleIdentifier) { // server build
+  if (moduleIdentifier) {
+    // server build
     hook = function (context) {
       // 2.3 injection
       context =
@@ -1866,7 +1806,12 @@ function normalizeComponent (
     options._ssrRegister = hook
   } else if (injectStyles) {
     hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      ? function () {
+          injectStyles.call(
+            this,
+            (options.functional ? this.parent : this).$root.$options.shadowRoot
+          )
+        }
       : injectStyles
   }
 
@@ -1875,18 +1820,16 @@ function normalizeComponent (
       // for template-only hot-reload because in that case the render fn doesn't
       // go through the normalizer
       options._injectStyles = hook
-      // register for functioal component in vue file
+      // register for functional component in vue file
       var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
+      options.render = function renderWithStyleInjection(h, context) {
         hook.call(context)
         return originalRender(h, context)
       }
     } else {
       // inject component registration as beforeCreate hook
       var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
     }
   }
 
@@ -1905,9 +1848,9 @@ function normalizeComponent (
 /* normalize component */
 
 var component = normalizeComponent(
-  components_Expandervue_type_script_lang_js_,
-  Expandervue_type_template_id_09a21177_render,
-  Expandervue_type_template_id_09a21177_staticRenderFns,
+  components_Expandervue_type_script_lang_js,
+  Expandervue_type_template_id_09ed5944_render,
+  Expandervue_type_template_id_09ed5944_staticRenderFns,
   false,
   null,
   null,
@@ -1915,85 +1858,11 @@ var component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "src/components/Expander.vue"
 /* harmony default export */ var Expander = (component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskListHeader.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskListHeader.vue?vue&type=script&lang=js
 
 
-/* harmony default export */ var TaskListHeadervue_type_script_lang_js_ = ({
+/* harmony default export */ var TaskListHeadervue_type_script_lang_js = ({
   name: 'TaskListHeader',
   components: {
     TaskListExpander: Expander
@@ -2090,8 +1959,8 @@ component.options.__file = "src/components/Expander.vue"
   }
 });
 
-// CONCATENATED MODULE: ./src/components/TaskList/TaskListHeader.vue?vue&type=script&lang=js&
- /* harmony default export */ var TaskList_TaskListHeadervue_type_script_lang_js_ = (TaskListHeadervue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/TaskList/TaskListHeader.vue?vue&type=script&lang=js
+ /* harmony default export */ var TaskList_TaskListHeadervue_type_script_lang_js = (TaskListHeadervue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/TaskList/TaskListHeader.vue
 
 
@@ -2101,9 +1970,9 @@ component.options.__file = "src/components/Expander.vue"
 /* normalize component */
 
 var TaskListHeader_component = normalizeComponent(
-  TaskList_TaskListHeadervue_type_script_lang_js_,
-  TaskListHeadervue_type_template_id_aefdd7c8_render,
-  TaskListHeadervue_type_template_id_aefdd7c8_staticRenderFns,
+  TaskList_TaskListHeadervue_type_script_lang_js,
+  TaskListHeadervue_type_template_id_c7a173ba_render,
+  TaskListHeadervue_type_template_id_c7a173ba_staticRenderFns,
   false,
   null,
   null,
@@ -2111,22 +1980,18 @@ var TaskListHeader_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var TaskListHeader_api; }
-TaskListHeader_component.options.__file = "src/components/TaskList/TaskListHeader.vue"
 /* harmony default export */ var TaskListHeader = (TaskListHeader_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskListItem.vue?vue&type=template&id=9716293c&
-var TaskListItemvue_type_template_id_9716293c_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskListItem.vue?vue&type=template&id=9ddbf498
+var TaskListItemvue_type_template_id_9ddbf498_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "div",
     {
       staticClass: "gantt-elastic__task-list-item",
-      style: Object.assign({}, _vm.root.style["task-list-item"])
+      style: { ..._vm.root.style["task-list-item"] },
     },
-    _vm._l(_vm.columns, function(column) {
+    _vm._l(_vm.columns, function (column) {
       return _c(
         "item-column",
         { key: column._id, attrs: { column: column, task: _vm.task } },
@@ -2136,10 +2001,10 @@ var TaskListItemvue_type_template_id_9716293c_render = function() {
                 attrs: {
                   tasks: [_vm.task],
                   options: _vm.root.state.options.taskList.expander,
-                  type: "taskList"
-                }
+                  type: "taskList",
+                },
               })
-            : _vm._e()
+            : _vm._e(),
         ],
         1
       )
@@ -2147,29 +2012,28 @@ var TaskListItemvue_type_template_id_9716293c_render = function() {
     1
   )
 }
-var TaskListItemvue_type_template_id_9716293c_staticRenderFns = []
-TaskListItemvue_type_template_id_9716293c_render._withStripped = true
+var TaskListItemvue_type_template_id_9ddbf498_staticRenderFns = []
+TaskListItemvue_type_template_id_9ddbf498_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/TaskList/TaskListItem.vue?vue&type=template&id=9716293c&
+// CONCATENATED MODULE: ./src/components/TaskList/TaskListItem.vue?vue&type=template&id=9ddbf498
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/ItemColumn.vue?vue&type=template&id=cb5a6c96&
-var ItemColumnvue_type_template_id_cb5a6c96_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/ItemColumn.vue?vue&type=template&id=76ce2b5b
+var ItemColumnvue_type_template_id_76ce2b5b_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "div",
     {
       staticClass: "gantt-elastic__task-list-item-column",
-      style: _vm.itemColumnStyle
+      style: _vm.itemColumnStyle,
     },
     [
       _c(
         "div",
         {
           staticClass: "gantt-elastic__task-list-item-value-wrapper",
-          style: _vm.wrapperStyle
+          style: _vm.wrapperStyle,
         },
         [
           _vm._t("default"),
@@ -2178,7 +2042,7 @@ var ItemColumnvue_type_template_id_cb5a6c96_render = function() {
             "div",
             {
               staticClass: "gantt-elastic__task-list-item-value-container",
-              style: _vm.containerStyle
+              style: _vm.containerStyle,
             },
             [
               !_vm.html
@@ -2188,40 +2052,40 @@ var ItemColumnvue_type_template_id_cb5a6c96_render = function() {
                       staticClass: "gantt-elastic__task-list-item-value",
                       style: _vm.valueStyle,
                       on: {
-                        click: function($event) {
+                        click: function ($event) {
                           return _vm.emitEvent("click", $event)
                         },
-                        mouseenter: function($event) {
+                        mouseenter: function ($event) {
                           return _vm.emitEvent("mouseenter", $event)
                         },
-                        mouseover: function($event) {
+                        mouseover: function ($event) {
                           return _vm.emitEvent("mouseover", $event)
                         },
-                        mouseout: function($event) {
+                        mouseout: function ($event) {
                           return _vm.emitEvent("mouseout", $event)
                         },
-                        mousemove: function($event) {
+                        mousemove: function ($event) {
                           return _vm.emitEvent("mousemove", $event)
                         },
-                        mousedown: function($event) {
+                        mousedown: function ($event) {
                           return _vm.emitEvent("mousedown", $event)
                         },
-                        mouseup: function($event) {
+                        mouseup: function ($event) {
                           return _vm.emitEvent("mouseup", $event)
                         },
-                        mousewheel: function($event) {
+                        mousewheel: function ($event) {
                           return _vm.emitEvent("mousewheel", $event)
                         },
-                        touchstart: function($event) {
+                        touchstart: function ($event) {
                           return _vm.emitEvent("touchstart", $event)
                         },
-                        touchmove: function($event) {
+                        touchmove: function ($event) {
                           return _vm.emitEvent("touchmove", $event)
                         },
-                        touchend: function($event) {
+                        touchend: function ($event) {
                           return _vm.emitEvent("touchend", $event)
-                        }
-                      }
+                        },
+                      },
                     },
                     [_vm._v("\n        " + _vm._s(_vm.value) + "\n      ")]
                   )
@@ -2230,111 +2094,58 @@ var ItemColumnvue_type_template_id_cb5a6c96_render = function() {
                     style: _vm.valueStyle,
                     domProps: { innerHTML: _vm._s(_vm.value) },
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         return _vm.emitEvent("click", $event)
                       },
-                      mouseenter: function($event) {
+                      mouseenter: function ($event) {
                         return _vm.emitEvent("mouseenter", $event)
                       },
-                      mouseover: function($event) {
+                      mouseover: function ($event) {
                         return _vm.emitEvent("mouseover", $event)
                       },
-                      mouseout: function($event) {
+                      mouseout: function ($event) {
                         return _vm.emitEvent("mouseout", $event)
                       },
-                      mousemove: function($event) {
+                      mousemove: function ($event) {
                         return _vm.emitEvent("mousemove", $event)
                       },
-                      mousedown: function($event) {
+                      mousedown: function ($event) {
                         return _vm.emitEvent("mousedown", $event)
                       },
-                      mouseup: function($event) {
+                      mouseup: function ($event) {
                         return _vm.emitEvent("mouseup", $event)
                       },
-                      mousewheel: function($event) {
+                      mousewheel: function ($event) {
                         return _vm.emitEvent("mousewheel", $event)
                       },
-                      touchstart: function($event) {
+                      touchstart: function ($event) {
                         return _vm.emitEvent("touchstart", $event)
                       },
-                      touchmove: function($event) {
+                      touchmove: function ($event) {
                         return _vm.emitEvent("touchmove", $event)
                       },
-                      touchend: function($event) {
+                      touchend: function ($event) {
                         return _vm.emitEvent("touchend", $event)
-                      }
-                    }
-                  })
+                      },
+                    },
+                  }),
             ]
-          )
+          ),
         ],
         2
-      )
+      ),
     ]
   )
 }
-var ItemColumnvue_type_template_id_cb5a6c96_staticRenderFns = []
-ItemColumnvue_type_template_id_cb5a6c96_render._withStripped = true
+var ItemColumnvue_type_template_id_76ce2b5b_staticRenderFns = []
+ItemColumnvue_type_template_id_76ce2b5b_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/TaskList/ItemColumn.vue?vue&type=template&id=cb5a6c96&
+// CONCATENATED MODULE: ./src/components/TaskList/ItemColumn.vue?vue&type=template&id=76ce2b5b
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/ItemColumn.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/ItemColumn.vue?vue&type=script&lang=js
 
-/* harmony default export */ var ItemColumnvue_type_script_lang_js_ = ({
+/* harmony default export */ var ItemColumnvue_type_script_lang_js = ({
   name: 'ItemColumn',
   inject: ['root'],
   props: ['column', 'task'],
@@ -2409,8 +2220,8 @@ ItemColumnvue_type_template_id_cb5a6c96_render._withStripped = true
   }
 });
 
-// CONCATENATED MODULE: ./src/components/TaskList/ItemColumn.vue?vue&type=script&lang=js&
- /* harmony default export */ var TaskList_ItemColumnvue_type_script_lang_js_ = (ItemColumnvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/TaskList/ItemColumn.vue?vue&type=script&lang=js
+ /* harmony default export */ var TaskList_ItemColumnvue_type_script_lang_js = (ItemColumnvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/TaskList/ItemColumn.vue
 
 
@@ -2420,9 +2231,9 @@ ItemColumnvue_type_template_id_cb5a6c96_render._withStripped = true
 /* normalize component */
 
 var ItemColumn_component = normalizeComponent(
-  TaskList_ItemColumnvue_type_script_lang_js_,
-  ItemColumnvue_type_template_id_cb5a6c96_render,
-  ItemColumnvue_type_template_id_cb5a6c96_staticRenderFns,
+  TaskList_ItemColumnvue_type_script_lang_js,
+  ItemColumnvue_type_template_id_76ce2b5b_render,
+  ItemColumnvue_type_template_id_76ce2b5b_staticRenderFns,
   false,
   null,
   null,
@@ -2430,36 +2241,13 @@ var ItemColumn_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var ItemColumn_api; }
-ItemColumn_component.options.__file = "src/components/TaskList/ItemColumn.vue"
 /* harmony default export */ var ItemColumn = (ItemColumn_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskListItem.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskListItem.vue?vue&type=script&lang=js
 
 
 
 
-/* harmony default export */ var TaskListItemvue_type_script_lang_js_ = ({
+/* harmony default export */ var TaskListItemvue_type_script_lang_js = ({
   name: 'TaskListItem',
   components: {
     TaskListExpander: Expander,
@@ -2477,8 +2265,8 @@ ItemColumn_component.options.__file = "src/components/TaskList/ItemColumn.vue"
   }
 });
 
-// CONCATENATED MODULE: ./src/components/TaskList/TaskListItem.vue?vue&type=script&lang=js&
- /* harmony default export */ var TaskList_TaskListItemvue_type_script_lang_js_ = (TaskListItemvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/TaskList/TaskListItem.vue?vue&type=script&lang=js
+ /* harmony default export */ var TaskList_TaskListItemvue_type_script_lang_js = (TaskListItemvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/TaskList/TaskListItem.vue
 
 
@@ -2488,9 +2276,9 @@ ItemColumn_component.options.__file = "src/components/TaskList/ItemColumn.vue"
 /* normalize component */
 
 var TaskListItem_component = normalizeComponent(
-  TaskList_TaskListItemvue_type_script_lang_js_,
-  TaskListItemvue_type_template_id_9716293c_render,
-  TaskListItemvue_type_template_id_9716293c_staticRenderFns,
+  TaskList_TaskListItemvue_type_script_lang_js,
+  TaskListItemvue_type_template_id_9ddbf498_render,
+  TaskListItemvue_type_template_id_9ddbf498_staticRenderFns,
   false,
   null,
   null,
@@ -2498,43 +2286,12 @@ var TaskListItem_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var TaskListItem_api; }
-TaskListItem_component.options.__file = "src/components/TaskList/TaskListItem.vue"
 /* harmony default export */ var TaskListItem = (TaskListItem_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskList.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/TaskList/TaskList.vue?vue&type=script&lang=js
 
 
 
-/* harmony default export */ var TaskListvue_type_script_lang_js_ = ({
+/* harmony default export */ var TaskListvue_type_script_lang_js = ({
   name: 'TaskList',
   components: {
     TaskListHeader: TaskListHeader,
@@ -2555,8 +2312,8 @@ TaskListItem_component.options.__file = "src/components/TaskList/TaskListItem.vu
   }
 });
 
-// CONCATENATED MODULE: ./src/components/TaskList/TaskList.vue?vue&type=script&lang=js&
- /* harmony default export */ var TaskList_TaskListvue_type_script_lang_js_ = (TaskListvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/TaskList/TaskList.vue?vue&type=script&lang=js
+ /* harmony default export */ var TaskList_TaskListvue_type_script_lang_js = (TaskListvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/TaskList/TaskList.vue
 
 
@@ -2566,9 +2323,9 @@ TaskListItem_component.options.__file = "src/components/TaskList/TaskListItem.vu
 /* normalize component */
 
 var TaskList_component = normalizeComponent(
-  TaskList_TaskListvue_type_script_lang_js_,
-  TaskListvue_type_template_id_6e11f12f_render,
-  TaskListvue_type_template_id_6e11f12f_staticRenderFns,
+  TaskList_TaskListvue_type_script_lang_js,
+  TaskListvue_type_template_id_0ddd1532_render,
+  TaskListvue_type_template_id_0ddd1532_staticRenderFns,
   false,
   null,
   null,
@@ -2576,21 +2333,17 @@ var TaskList_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var TaskList_api; }
-TaskList_component.options.__file = "src/components/TaskList/TaskList.vue"
 /* harmony default export */ var TaskList = (TaskList_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Chart.vue?vue&type=template&id=67c3f5cd&
-var Chartvue_type_template_id_67c3f5cd_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Chart.vue?vue&type=template&id=50d838ca
+var Chartvue_type_template_id_50d838ca_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "div",
     {
       ref: "chart",
       staticClass: "gantt-elastic__chart",
-      style: Object.assign({}, _vm.root.style["chart"])
+      style: { ..._vm.root.style["chart"] },
     },
     [
       _c(
@@ -2598,10 +2351,11 @@ var Chartvue_type_template_id_67c3f5cd_render = function() {
         {
           ref: "chartCalendarContainer",
           staticClass: "gantt-elastic__chart-calendar-container",
-          style: Object.assign({}, _vm.root.style["chart-calendar-container"], {
+          style: {
+            ..._vm.root.style["chart-calendar-container"],
             height: _vm.root.state.options.calendar.height + "px",
-            "margin-bottom": _vm.root.state.options.calendar.gap + "px"
-          })
+            "margin-bottom": _vm.root.state.options.calendar.gap + "px",
+          },
         },
         [_c("calendar")],
         1
@@ -2612,21 +2366,23 @@ var Chartvue_type_template_id_67c3f5cd_render = function() {
         {
           ref: "chartGraphContainer",
           staticClass: "gantt-elastic__chart-graph-container",
-          style: Object.assign({}, _vm.root.style["chart-graph-container"], {
+          style: {
+            ..._vm.root.style["chart-graph-container"],
             height:
               _vm.root.state.options.height -
               _vm.root.state.options.calendar.height +
-              "px"
-          })
+              "px",
+          },
         },
         [
           _c(
             "div",
             {
-              style: Object.assign({}, _vm.root.style["chart-area"], {
+              style: {
+                ..._vm.root.style["chart-area"],
                 width: _vm.root.state.options.width + "px",
-                height: _vm.root.state.options.rowsHeight + "px"
-              })
+                height: _vm.root.state.options.rowsHeight + "px",
+              },
             },
             [
               _c(
@@ -2634,9 +2390,7 @@ var Chartvue_type_template_id_67c3f5cd_render = function() {
                 {
                   ref: "chartGraph",
                   staticClass: "gantt-elastic__chart-graph",
-                  style: Object.assign({}, _vm.root.style["chart-graph"], {
-                    height: "100%"
-                  })
+                  style: { ..._vm.root.style["chart-graph"], height: "100%" },
                 },
                 [
                   _c(
@@ -2644,189 +2398,138 @@ var Chartvue_type_template_id_67c3f5cd_render = function() {
                     {
                       ref: "chartGraphSvg",
                       staticClass: "gantt-elastic__chart-graph-svg",
-                      style: Object.assign(
-                        {},
-                        _vm.root.style["chart-graph-svg"]
-                      ),
+                      style: { ..._vm.root.style["chart-graph-svg"] },
                       attrs: {
                         x: "0",
                         y: "0",
                         width: _vm.root.state.options.width + "px",
                         height:
                           _vm.root.state.options.allVisibleTasksHeight + "px",
-                        xmlns: "http://www.w3.org/2000/svg"
-                      }
+                        xmlns: "http://www.w3.org/2000/svg",
+                      },
                     },
                     [
                       _c("days-highlight"),
                       _vm._v(" "),
                       _c("grid"),
                       _vm._v(" "),
-                      _c("dependency-lines", {
-                        attrs: { tasks: _vm.root.visibleTasks }
-                      }),
+                      !_vm.root.state.options.lineRenderTop
+                        ? _c("dependency-lines", {
+                            attrs: { tasks: _vm.root.visibleTasks },
+                          })
+                        : _vm._e(),
                       _vm._v(" "),
-                      _vm._l(_vm.root.visibleTasks, function(task) {
+                      _vm._l(_vm.root.visibleTasks, function (task) {
                         return _c(
                           "g",
                           {
                             key: task.id,
                             staticClass: "gantt-elastic__chart-row-wrapper",
-                            style: Object.assign(
-                              {},
-                              _vm.root.style["chart-row-wrapper"]
-                            ),
-                            attrs: { task: task }
+                            style: { ..._vm.root.style["chart-row-wrapper"] },
+                            attrs: { task: task },
                           },
                           [
                             _c(task.type, {
                               tag: "component",
-                              attrs: { task: task }
-                            })
+                              attrs: { task: task },
+                            }),
                           ],
                           1
                         )
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.root.state.options.lineRenderTop
+                        ? _c("dependency-lines", {
+                            attrs: { tasks: _vm.root.visibleTasks },
+                          })
+                        : _vm._e(),
                     ],
                     2
-                  )
+                  ),
                 ]
-              )
+              ),
             ]
-          )
+          ),
         ]
-      )
+      ),
     ]
   )
 }
-var Chartvue_type_template_id_67c3f5cd_staticRenderFns = []
-Chartvue_type_template_id_67c3f5cd_render._withStripped = true
+var Chartvue_type_template_id_50d838ca_staticRenderFns = []
+Chartvue_type_template_id_50d838ca_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Chart/Chart.vue?vue&type=template&id=67c3f5cd&
+// CONCATENATED MODULE: ./src/components/Chart/Chart.vue?vue&type=template&id=50d838ca
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Grid.vue?vue&type=template&id=2bf979a7&
-var Gridvue_type_template_id_2bf979a7_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Grid.vue?vue&type=template&id=33907b89
+var Gridvue_type_template_id_33907b89_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "svg",
     {
       ref: "chart",
       staticClass: "gantt-elastic__grid-lines-wrapper",
-      style: Object.assign({}, _vm.root.style["grid-lines-wrapper"]),
+      style: { ..._vm.root.style["grid-lines-wrapper"] },
       attrs: {
         x: "0",
         y: "0",
         width: _vm.root.state.options.width,
         height: _vm.root.state.options.allVisibleTasksHeight,
-        xmlns: "http://www.w3.org/2000/svg"
-      }
+        xmlns: "http://www.w3.org/2000/svg",
+      },
     },
     [
       _c(
         "g",
         {
           staticClass: "gantt-elastic__grid-lines",
-          style: Object.assign({}, _vm.root.style["grid-lines"])
+          style: { ..._vm.root.style["grid-lines"] },
         },
         [
-          _vm._l(_vm.horizontalLines, function(line) {
+          _vm._l(_vm.horizontalLines, function (line) {
             return _c("line", {
               key: line.key,
               staticClass: "gantt-elastic__grid-line-horizontal",
-              style: Object.assign({}, _vm.root.style["grid-line-horizontal"]),
-              attrs: { x1: line.x1, y1: line.y1, x2: line.x2, y2: line.y2 }
+              style: { ..._vm.root.style["grid-line-horizontal"] },
+              attrs: { x1: line.x1, y1: line.y1, x2: line.x2, y2: line.y2 },
             })
           }),
           _vm._v(" "),
-          _vm._l(_vm.verticalLines, function(line) {
+          _vm._l(_vm.verticalLines, function (line) {
             return _c("line", {
               key: line.key,
               staticClass: "gantt-elastic__grid-line-vertical",
-              style: Object.assign({}, _vm.root.style["grid-line-vertical"]),
-              attrs: { x1: line.x1, y1: line.y1, x2: line.x2, y2: line.y2 }
+              style: { ..._vm.root.style["grid-line-vertical"] },
+              attrs: { x1: line.x1, y1: line.y1, x2: line.x2, y2: line.y2 },
             })
           }),
           _vm._v(" "),
           _c("line", {
             staticClass: "gantt-elastic__grid-line-time",
-            style: Object.assign({}, _vm.root.style["grid-line-time"]),
+            style: { ..._vm.root.style["grid-line-time"] },
             attrs: {
               x1: _vm.timeLinePosition.x,
               y1: _vm.timeLinePosition.y1,
               x2: _vm.timeLinePosition.x,
-              y2: _vm.timeLinePosition.y2
-            }
-          })
+              y2: _vm.timeLinePosition.y2,
+            },
+          }),
         ],
         2
-      )
+      ),
     ]
   )
 }
-var Gridvue_type_template_id_2bf979a7_staticRenderFns = []
-Gridvue_type_template_id_2bf979a7_render._withStripped = true
+var Gridvue_type_template_id_33907b89_staticRenderFns = []
+Gridvue_type_template_id_33907b89_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Chart/Grid.vue?vue&type=template&id=2bf979a7&
+// CONCATENATED MODULE: ./src/components/Chart/Grid.vue?vue&type=template&id=33907b89
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Grid.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Grid.vue?vue&type=script&lang=js
 
-/* harmony default export */ var Gridvue_type_script_lang_js_ = ({
+/* harmony default export */ var Gridvue_type_script_lang_js = ({
   name: 'Grid',
   inject: ['root'],
   data() {
@@ -2944,8 +2647,8 @@ Gridvue_type_template_id_2bf979a7_render._withStripped = true
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Chart/Grid.vue?vue&type=script&lang=js&
- /* harmony default export */ var Chart_Gridvue_type_script_lang_js_ = (Gridvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Chart/Grid.vue?vue&type=script&lang=js
+ /* harmony default export */ var Chart_Gridvue_type_script_lang_js = (Gridvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Chart/Grid.vue
 
 
@@ -2955,9 +2658,9 @@ Gridvue_type_template_id_2bf979a7_render._withStripped = true
 /* normalize component */
 
 var Grid_component = normalizeComponent(
-  Chart_Gridvue_type_script_lang_js_,
-  Gridvue_type_template_id_2bf979a7_render,
-  Gridvue_type_template_id_2bf979a7_staticRenderFns,
+  Chart_Gridvue_type_script_lang_js,
+  Gridvue_type_template_id_33907b89_render,
+  Gridvue_type_template_id_33907b89_staticRenderFns,
   false,
   null,
   null,
@@ -2965,83 +2668,45 @@ var Grid_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var Grid_api; }
-Grid_component.options.__file = "src/components/Chart/Grid.vue"
 /* harmony default export */ var Grid = (Grid_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/DaysHighlight.vue?vue&type=template&id=1bfe64e8&
-var DaysHighlightvue_type_template_id_1bfe64e8_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/DaysHighlight.vue?vue&type=template&id=61bd1087
+var DaysHighlightvue_type_template_id_61bd1087_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _vm.showWorkingDays
     ? _c(
         "g",
         {
           staticClass: "gantt-elastic__chart-days-highlight-container",
-          style: Object.assign(
-            {},
-            _vm.root.style["chart-days-highlight-container"]
-          )
+          style: { ..._vm.root.style["chart-days-highlight-container"] },
         },
-        _vm._l(_vm.workingDays, function(day) {
+        _vm._l(_vm.workingDays, function (day) {
           return _c("rect", {
             key: _vm.getKey(day),
             staticClass: "gantt-elastic__chart-days-highlight-rect",
-            style: Object.assign(
-              {},
-              _vm.root.style["chart-days-highlight-rect"]
-            ),
+            style: { ..._vm.root.style["chart-days-highlight-rect"] },
             attrs: {
               x: day.offset.px,
               y: "0",
               width: day.width.px,
-              height: "100%"
-            }
+              height: "100%",
+            },
           })
         }),
         0
       )
     : _vm._e()
 }
-var DaysHighlightvue_type_template_id_1bfe64e8_staticRenderFns = []
-DaysHighlightvue_type_template_id_1bfe64e8_render._withStripped = true
+var DaysHighlightvue_type_template_id_61bd1087_staticRenderFns = []
+DaysHighlightvue_type_template_id_61bd1087_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Chart/DaysHighlight.vue?vue&type=template&id=1bfe64e8&
+// CONCATENATED MODULE: ./src/components/Chart/DaysHighlight.vue?vue&type=template&id=61bd1087
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/DaysHighlight.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/DaysHighlight.vue?vue&type=script&lang=js
 
 
-/* harmony default export */ var DaysHighlightvue_type_script_lang_js_ = ({
+/* harmony default export */ var DaysHighlightvue_type_script_lang_js = ({
   name: 'DaysHighlight',
   inject: ['root'],
   data() {
@@ -3089,8 +2754,8 @@ DaysHighlightvue_type_template_id_1bfe64e8_render._withStripped = true
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Chart/DaysHighlight.vue?vue&type=script&lang=js&
- /* harmony default export */ var Chart_DaysHighlightvue_type_script_lang_js_ = (DaysHighlightvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Chart/DaysHighlight.vue?vue&type=script&lang=js
+ /* harmony default export */ var Chart_DaysHighlightvue_type_script_lang_js = (DaysHighlightvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Chart/DaysHighlight.vue
 
 
@@ -3100,9 +2765,9 @@ DaysHighlightvue_type_template_id_1bfe64e8_render._withStripped = true
 /* normalize component */
 
 var DaysHighlight_component = normalizeComponent(
-  Chart_DaysHighlightvue_type_script_lang_js_,
-  DaysHighlightvue_type_template_id_1bfe64e8_render,
-  DaysHighlightvue_type_template_id_1bfe64e8_staticRenderFns,
+  Chart_DaysHighlightvue_type_script_lang_js,
+  DaysHighlightvue_type_template_id_61bd1087_render,
+  DaysHighlightvue_type_template_id_61bd1087_staticRenderFns,
   false,
   null,
   null,
@@ -3110,75 +2775,72 @@ var DaysHighlight_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var DaysHighlight_api; }
-DaysHighlight_component.options.__file = "src/components/Chart/DaysHighlight.vue"
 /* harmony default export */ var DaysHighlight = (DaysHighlight_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Calendar/Calendar.vue?vue&type=template&id=dee108e2&
-var Calendarvue_type_template_id_dee108e2_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Calendar/Calendar.vue?vue&type=template&id=d6b41f74
+var Calendarvue_type_template_id_d6b41f74_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "div",
     {
       staticClass: "gantt-elastic__calendar-wrapper",
-      style: Object.assign({}, _vm.root.style["calendar-wrapper"], {
-        width: _vm.root.state.options.width + "px"
-      })
+      style: {
+        ..._vm.root.style["calendar-wrapper"],
+        width: _vm.root.state.options.width + "px",
+      },
     },
     [
       _c(
         "div",
         {
           staticClass: "gantt-elastic__calendar",
-          style: Object.assign({}, _vm.root.style["calendar"], {
-            width: _vm.root.state.options.width + "px"
-          })
+          style: {
+            ..._vm.root.style["calendar"],
+            width: _vm.root.state.options.width + "px",
+          },
         },
         [
           _vm.root.state.options.calendar.month.display
             ? _c("calendar-row", {
-                attrs: { items: _vm.dates.months, which: "month" }
+                attrs: { items: _vm.dates.months, which: "month" },
               })
             : _vm._e(),
           _vm._v(" "),
           _vm.root.state.options.calendar.day.display
             ? _c("calendar-row", {
-                attrs: { items: _vm.dates.days, which: "day" }
+                attrs: { items: _vm.dates.days, which: "day" },
               })
             : _vm._e(),
           _vm._v(" "),
           _vm.root.state.options.calendar.hour.display
             ? _c("calendar-row", {
-                attrs: { items: _vm.dates.hours, which: "hour" }
+                attrs: { items: _vm.dates.hours, which: "hour" },
               })
-            : _vm._e()
+            : _vm._e(),
         ],
         1
-      )
+      ),
     ]
   )
 }
-var Calendarvue_type_template_id_dee108e2_staticRenderFns = []
-Calendarvue_type_template_id_dee108e2_render._withStripped = true
+var Calendarvue_type_template_id_d6b41f74_staticRenderFns = []
+Calendarvue_type_template_id_d6b41f74_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Calendar/Calendar.vue?vue&type=template&id=dee108e2&
+// CONCATENATED MODULE: ./src/components/Calendar/Calendar.vue?vue&type=template&id=d6b41f74
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Calendar/CalendarRow.vue?vue&type=template&id=0daf06fb&
-var CalendarRowvue_type_template_id_0daf06fb_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Calendar/CalendarRow.vue?vue&type=template&id=14d015ce
+var CalendarRowvue_type_template_id_14d015ce_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "div",
     {
       class:
         "gantt-elastic__calendar-row gantt-elastic__calendar-row--" + _vm.which,
-      style: _vm.rowStyle
+      style: _vm.rowStyle,
     },
-    _vm._l(_vm.items, function(item, itemIndex) {
+    _vm._l(_vm.items, function (item, itemIndex) {
       return _c(
         "div",
         {
@@ -3186,9 +2848,9 @@ var CalendarRowvue_type_template_id_0daf06fb_render = function() {
           class:
             "gantt-elastic__calendar-row-rect gantt-elastic__calendar-row-rect--" +
             _vm.which,
-          style: _vm.rectStyle
+          style: _vm.rectStyle,
         },
-        _vm._l(item.children, function(child, childIndex) {
+        _vm._l(item.children, function (child, childIndex) {
           return _c(
             "div",
             {
@@ -3196,7 +2858,7 @@ var CalendarRowvue_type_template_id_0daf06fb_render = function() {
               class:
                 "gantt-elastic__calendar-row-rect-child gantt-elastic__calendar-row-rect-child--" +
                 _vm.which,
-              style: _vm.rectChildStyle[itemIndex][childIndex]
+              style: _vm.rectChildStyle[itemIndex][childIndex],
             },
             [
               _c(
@@ -3205,10 +2867,10 @@ var CalendarRowvue_type_template_id_0daf06fb_render = function() {
                   class:
                     "gantt-elastic__calendar-row-text gantt-elastic__calendar-row-text--" +
                     _vm.which,
-                  style: _vm.textStyle(child)
+                  style: _vm.textStyle(child),
                 },
                 [_vm._v("\n        " + _vm._s(child.label) + "\n      ")]
-              )
+              ),
             ]
           )
         }),
@@ -3218,48 +2880,15 @@ var CalendarRowvue_type_template_id_0daf06fb_render = function() {
     0
   )
 }
-var CalendarRowvue_type_template_id_0daf06fb_staticRenderFns = []
-CalendarRowvue_type_template_id_0daf06fb_render._withStripped = true
+var CalendarRowvue_type_template_id_14d015ce_staticRenderFns = []
+CalendarRowvue_type_template_id_14d015ce_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Calendar/CalendarRow.vue?vue&type=template&id=0daf06fb&
+// CONCATENATED MODULE: ./src/components/Calendar/CalendarRow.vue?vue&type=template&id=14d015ce
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Calendar/CalendarRow.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Calendar/CalendarRow.vue?vue&type=script&lang=js
 
-/* harmony default export */ var CalendarRowvue_type_script_lang_js_ = ({
+/* harmony default export */ var CalendarRowvue_type_script_lang_js = ({
   name: 'CalendarRow',
   inject: ['root'],
   props: ['items', 'which'],
@@ -3328,8 +2957,8 @@ CalendarRowvue_type_template_id_0daf06fb_render._withStripped = true
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Calendar/CalendarRow.vue?vue&type=script&lang=js&
- /* harmony default export */ var Calendar_CalendarRowvue_type_script_lang_js_ = (CalendarRowvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Calendar/CalendarRow.vue?vue&type=script&lang=js
+ /* harmony default export */ var Calendar_CalendarRowvue_type_script_lang_js = (CalendarRowvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Calendar/CalendarRow.vue
 
 
@@ -3339,9 +2968,9 @@ CalendarRowvue_type_template_id_0daf06fb_render._withStripped = true
 /* normalize component */
 
 var CalendarRow_component = normalizeComponent(
-  Calendar_CalendarRowvue_type_script_lang_js_,
-  CalendarRowvue_type_template_id_0daf06fb_render,
-  CalendarRowvue_type_template_id_0daf06fb_staticRenderFns,
+  Calendar_CalendarRowvue_type_script_lang_js,
+  CalendarRowvue_type_template_id_14d015ce_render,
+  CalendarRowvue_type_template_id_14d015ce_staticRenderFns,
   false,
   null,
   null,
@@ -3349,37 +2978,13 @@ var CalendarRow_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var CalendarRow_api; }
-CalendarRow_component.options.__file = "src/components/Calendar/CalendarRow.vue"
 /* harmony default export */ var CalendarRow = (CalendarRow_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Calendar/Calendar.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Calendar/Calendar.vue?vue&type=script&lang=js
 
 
 
 
-/* harmony default export */ var Calendarvue_type_script_lang_js_ = ({
+/* harmony default export */ var Calendarvue_type_script_lang_js = ({
   name: 'Calendar',
   components: {
     CalendarRow: CalendarRow
@@ -3693,8 +3298,8 @@ CalendarRow_component.options.__file = "src/components/Calendar/CalendarRow.vue"
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Calendar/Calendar.vue?vue&type=script&lang=js&
- /* harmony default export */ var Calendar_Calendarvue_type_script_lang_js_ = (Calendarvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Calendar/Calendar.vue?vue&type=script&lang=js
+ /* harmony default export */ var Calendar_Calendarvue_type_script_lang_js = (Calendarvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Calendar/Calendar.vue
 
 
@@ -3704,9 +3309,9 @@ CalendarRow_component.options.__file = "src/components/Calendar/CalendarRow.vue"
 /* normalize component */
 
 var Calendar_component = normalizeComponent(
-  Calendar_Calendarvue_type_script_lang_js_,
-  Calendarvue_type_template_id_dee108e2_render,
-  Calendarvue_type_template_id_dee108e2_staticRenderFns,
+  Calendar_Calendarvue_type_script_lang_js,
+  Calendarvue_type_template_id_d6b41f74_render,
+  Calendarvue_type_template_id_d6b41f74_staticRenderFns,
   false,
   null,
   null,
@@ -3714,86 +3319,116 @@ var Calendar_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var Calendar_api; }
-Calendar_component.options.__file = "src/components/Calendar/Calendar.vue"
 /* harmony default export */ var Calendar = (Calendar_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/DependencyLines.vue?vue&type=template&id=f1cbf6ba&
-var DependencyLinesvue_type_template_id_f1cbf6ba_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/DependencyLines.vue?vue&type=template&id=3a22683e
+var DependencyLinesvue_type_template_id_3a22683e_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "svg",
     {
       staticClass: "gantt-elastic__chart-dependency-lines-container",
-      style: Object.assign(
-        {},
-        _vm.root.style["chart-dependency-lines-container"]
-      ),
-      attrs: { x: "0", y: "0", width: "100%", height: "100%" }
+      style: { ..._vm.root.style["chart-dependency-lines-container"] },
+      attrs: { x: "0", y: "0", width: "100%", height: "100%" },
     },
-    _vm._l(_vm.dependencyTasks, function(task) {
-      return _c(
-        "g",
-        { key: task.id, attrs: { task: task } },
-        _vm._l(task.dependencyLines, function(dependencyLine) {
-          return _c("path", {
-            key: dependencyLine.id,
-            staticClass: "gantt-elastic__chart-dependency-lines-path",
-            style: Object.assign(
-              {},
-              _vm.root.style["chart-dependency-lines-path"],
-              task.style["chart-dependency-lines-path"]
-            ),
-            attrs: { task: task, d: dependencyLine.points }
-          })
-        }),
-        0
-      )
-    }),
-    0
+    [
+      _c("defs", [
+        _c(
+          "marker",
+          {
+            attrs: {
+              id: "markerArrowCritical",
+              markerHeight: "11",
+              markerWidth: "11",
+              refX: "8.5",
+              refY: "3",
+              viewBox: "0 0 9 6",
+              orient: "auto-start-reverse",
+              markerUnits: "userSpaceOnUse",
+            },
+          },
+          [
+            _c("path", {
+              style: {
+                fill: _vm.root.style["chart-dependency-lines-critical-path"][
+                  "stroke"
+                ],
+              },
+              attrs: { d: "M3,0 L3,6 L9,3 z" },
+            }),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "marker",
+          {
+            attrs: {
+              id: "markerArrow",
+              markerHeight: "11",
+              markerWidth: "11",
+              refX: "8.5",
+              refY: "3",
+              viewBox: "0 0 9 6",
+              orient: "auto-start-reverse",
+              markerUnits: "userSpaceOnUse",
+            },
+          },
+          [
+            _c("path", {
+              style: {
+                fill: _vm.root.style["chart-dependency-lines-path"]["stroke"],
+              },
+              attrs: { d: "M3,0 L3,6 L9,3 z" },
+            }),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.dependencyTasks, function (task) {
+        return _c(
+          "g",
+          { key: task.id, attrs: { task: task } },
+          _vm._l(task.dependencyLines, function (dependencyLine) {
+            return _c("path", {
+              key: dependencyLine.id,
+              staticClass: "gantt-elastic__chart-dependency-lines-path",
+              style: {
+                ...(_vm.root.state.options.showCritical &&
+                dependencyLine.isCritical
+                  ? _vm.root.style["chart-dependency-lines-critical-path"]
+                  : _vm.root.style["chart-dependency-lines-path"]),
+                ...(_vm.root.state.options.showCritical &&
+                dependencyLine.isCritical
+                  ? task.style["chart-dependency-lines-critical-path"]
+                  : task.style["chart-dependency-lines-path"]),
+                ...task.style[
+                  "chart-dependency-lines-path-" + dependencyLine.task_id
+                ],
+                "marker-end":
+                  _vm.root.state.options.showCritical &&
+                  dependencyLine.isCritical
+                    ? "url(#markerArrowCritical)"
+                    : "url(#markerArrow)",
+              },
+              attrs: { task: task, d: dependencyLine.points },
+            })
+          }),
+          0
+        )
+      }),
+    ],
+    2
   )
 }
-var DependencyLinesvue_type_template_id_f1cbf6ba_staticRenderFns = []
-DependencyLinesvue_type_template_id_f1cbf6ba_render._withStripped = true
+var DependencyLinesvue_type_template_id_3a22683e_staticRenderFns = []
+DependencyLinesvue_type_template_id_3a22683e_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Chart/DependencyLines.vue?vue&type=template&id=f1cbf6ba&
+// CONCATENATED MODULE: ./src/components/Chart/DependencyLines.vue?vue&type=template&id=3a22683e
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/DependencyLines.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/DependencyLines.vue?vue&type=script&lang=js
 
-/* harmony default export */ var DependencyLinesvue_type_script_lang_js_ = ({
+/* harmony default export */ var DependencyLinesvue_type_script_lang_js = ({
   name: 'DependencyLines',
   inject: ['root'],
   props: ['tasks'],
@@ -3811,6 +3446,10 @@ DependencyLinesvue_type_template_id_f1cbf6ba_render._withStripped = true
     getPoints(fromTaskId, toTaskId) {
       const fromTask = this.root.getTask(fromTaskId);
       const toTask = this.root.getTask(toTaskId);
+      const state = this.root.state;
+      const gap = state.options.chart.grid.horizontal.gap;
+      const taskHeight = state.options.row.height;
+      const rowHeight = (taskHeight + gap * 2);
       if (
         fromTask === null ||
         toTask === null ||
@@ -3824,6 +3463,7 @@ DependencyLinesvue_type_template_id_f1cbf6ba_render._withStripped = true
       const stopX = toTask.x;
       const stopY = toTask.y + toTask.height / 2;
       const distanceX = stopX - startX;
+      // eslint-disable-next-line no-unused-vars
       let distanceY;
       let yMultiplier = 1;
       if (stopY >= startY) {
@@ -3834,11 +3474,12 @@ DependencyLinesvue_type_template_id_f1cbf6ba_render._withStripped = true
       }
       const offset = 10;
       const roundness = 4;
-      const isBefore = distanceX <= offset + roundness;
       let points = `M ${startX} ${startY}
           L ${startX + offset},${startY} `;
-      if (isBefore) {
-        points += `Q ${startX + offset + roundness},${startY} ${startX + offset + roundness},${startY +
+      if (state.options.useOldDependecyLine) {
+        const isBefore = distanceX <= offset + roundness;
+        if (isBefore) {
+          points += `Q ${startX + offset + roundness},${startY} ${startX + offset + roundness},${startY +
           roundness * yMultiplier}
             L ${startX + offset + roundness},${startY + (distanceY * yMultiplier) / 2 - roundness * yMultiplier}
             Q ${startX + offset + roundness},${startY + (distanceY * yMultiplier) / 2} ${startX + offset},${startY +
@@ -3851,15 +3492,37 @@ DependencyLinesvue_type_template_id_f1cbf6ba_render._withStripped = true
             L ${startX - offset + distanceX - roundness},${stopY - roundness * yMultiplier}
             Q ${startX - offset + distanceX - roundness},${stopY} ${startX - offset + distanceX},${stopY}
             L ${stopX},${stopY}`;
-      } else {
-        points += `L ${startX + distanceX / 2 - roundness},${startY}
+        } else {
+          points += `L ${startX + distanceX / 2 - roundness},${startY}
             Q ${startX + distanceX / 2},${startY} ${startX + distanceX / 2},${startY + roundness * yMultiplier}
             L ${startX + distanceX / 2},${stopY - roundness * yMultiplier}
             Q ${startX + distanceX / 2},${stopY} ${startX + distanceX / 2 + roundness},${stopY}
             L ${stopX},${stopY}`;
+        }
+      } else {
+        const isBefore = distanceX < 0;
+        if (isBefore) {
+          points += `Q ${startX + offset + roundness},${startY} ${startX + offset + roundness},${startY +
+          roundness * yMultiplier}
+            L ${startX + offset + roundness},${startY + (rowHeight * yMultiplier) / 2 - roundness * yMultiplier}
+            Q ${startX + offset + roundness},${startY + (rowHeight * yMultiplier) / 2} ${startX + offset},${startY +
+          (rowHeight * yMultiplier) / 2}
+            L ${startX - offset + distanceX},${startY + (rowHeight * yMultiplier) / 2}
+            Q ${startX - offset + distanceX - roundness},${startY + (rowHeight * yMultiplier) / 2} ${startX -
+          offset +
+          distanceX -
+          roundness},${startY + (rowHeight * yMultiplier) / 2 + roundness * yMultiplier}
+            L ${startX - offset + distanceX - roundness},${stopY - roundness * yMultiplier}
+            Q ${startX - offset + distanceX - roundness},${stopY} ${startX - offset + distanceX},${stopY}
+            L ${stopX},${stopY}`;
+        } else {
+          points += `L ${startX + distanceX + offset - roundness},${startY}
+            Q ${startX + distanceX + offset },${startY} ${startX + distanceX + offset },${startY + roundness * yMultiplier}
+            L ${stopX+offset},${yMultiplier === 1 ? toTask.y : toTask.y + taskHeight}`;
+        }
       }
       return points;
-    }
+    },
   },
   computed: {
     /**
@@ -3872,17 +3535,24 @@ DependencyLinesvue_type_template_id_f1cbf6ba_render._withStripped = true
         .filter(task => typeof task.dependentOn !== 'undefined')
         .map(task => {
           task.dependencyLines = task.dependentOn.map(id => {
-            return { points: this.getPoints(id, task.id) };
-          });
+              const preTask = this.tasks.find((t) => t.id === id);
+              return {
+                points: this.getPoints(id, task.id),
+                task_id: id,
+                isCritical: (preTask && preTask.isCritical) || false,
+              };
+            })
+            .sort((x, y) => Number(x.isCritical) - Number(y.isCritical));
           return task;
         })
-        .filter(task => task.dependencyLines.points !== null);
-    }
-  }
+        .filter((task) => task.dependencyLines.points !== null)
+        .reverse();
+    },
+  },
 });
 
-// CONCATENATED MODULE: ./src/components/Chart/DependencyLines.vue?vue&type=script&lang=js&
- /* harmony default export */ var Chart_DependencyLinesvue_type_script_lang_js_ = (DependencyLinesvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Chart/DependencyLines.vue?vue&type=script&lang=js
+ /* harmony default export */ var Chart_DependencyLinesvue_type_script_lang_js = (DependencyLinesvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Chart/DependencyLines.vue
 
 
@@ -3892,9 +3562,9 @@ DependencyLinesvue_type_template_id_f1cbf6ba_render._withStripped = true
 /* normalize component */
 
 var DependencyLines_component = normalizeComponent(
-  Chart_DependencyLinesvue_type_script_lang_js_,
-  DependencyLinesvue_type_template_id_f1cbf6ba_render,
-  DependencyLinesvue_type_template_id_f1cbf6ba_staticRenderFns,
+  Chart_DependencyLinesvue_type_script_lang_js,
+  DependencyLinesvue_type_template_id_3a22683e_render,
+  DependencyLinesvue_type_template_id_3a22683e_staticRenderFns,
   false,
   null,
   null,
@@ -3902,26 +3572,21 @@ var DependencyLines_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var DependencyLines_api; }
-DependencyLines_component.options.__file = "src/components/Chart/DependencyLines.vue"
 /* harmony default export */ var DependencyLines = (DependencyLines_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Task.vue?vue&type=template&id=e9c23eca&
-var Taskvue_type_template_id_e9c23eca_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Task.vue?vue&type=template&id=1a1f87ca
+var Taskvue_type_template_id_1a1f87ca_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "g",
     {
       staticClass:
         "gantt-elastic__chart-row-bar-wrapper gantt-elastic__chart-row-task-wrapper",
-      style: Object.assign(
-        {},
-        _vm.root.style["chart-row-bar-wrapper"],
-        _vm.root.style["chart-row-task-wrapper"],
-        _vm.task.style["chart-row-bar-wrapper"]
-      )
+      style: {
+        ..._vm.root.style["chart-row-bar-wrapper"],
+        ..._vm.root.style["chart-row-task-wrapper"],
+        ..._vm.task.style["chart-row-bar-wrapper"],
+      },
     },
     [
       _vm.displayExpander
@@ -3930,12 +3595,11 @@ var Taskvue_type_template_id_e9c23eca_render = function() {
             {
               staticClass:
                 "gantt-elastic__chart-expander gantt-elastic__chart-expander--task",
-              style: Object.assign(
-                {},
-                _vm.root.style["chart-expander"],
-                _vm.root.style["chart-expander--task"],
-                _vm.task.style["chart-expander"]
-              ),
+              style: {
+                ..._vm.root.style["chart-expander"],
+                ..._vm.root.style["chart-expander--task"],
+                ..._vm.task.style["chart-expander"],
+              },
               attrs: {
                 x:
                   _vm.task.x -
@@ -3947,17 +3611,17 @@ var Taskvue_type_template_id_e9c23eca_render = function() {
                     _vm.root.state.options.chart.expander.size) /
                     2,
                 width: _vm.root.state.options.chart.expander.size,
-                height: _vm.root.state.options.chart.expander.size
-              }
+                height: _vm.root.state.options.chart.expander.size,
+              },
             },
             [
               _c("expander", {
                 attrs: {
                   tasks: [_vm.task],
                   options: _vm.root.state.options.chart.expander,
-                  type: "chart"
-                }
-              })
+                  type: "chart",
+                },
+              }),
             ],
             1
           )
@@ -3968,109 +3632,112 @@ var Taskvue_type_template_id_e9c23eca_render = function() {
         {
           staticClass:
             "gantt-elastic__chart-row-bar gantt-elastic__chart-row-task",
-          style: Object.assign(
-            {},
-            _vm.root.style["chart-row-bar"],
-            _vm.root.style["chart-row-task"],
-            _vm.task.style["chart-row-bar"]
-          ),
+          style: {
+            ..._vm.root.style["chart-row-bar"],
+            ..._vm.root.style["chart-row-task"],
+            ..._vm.task.style["chart-row-bar"],
+          },
           attrs: {
             x: _vm.task.x,
             y: _vm.task.y,
             width: _vm.task.width,
             height: _vm.task.height,
-            viewBox: "0 0 " + _vm.task.width + " " + _vm.task.height,
-            xmlns: "http://www.w3.org/2000/svg"
+            viewBox: `0 0 ${_vm.task.width} ${_vm.task.height}`,
+            xmlns: "http://www.w3.org/2000/svg",
           },
           on: {
-            click: function($event) {
+            click: function ($event) {
               return _vm.emitEvent("click", $event)
             },
-            mouseenter: function($event) {
+            mouseenter: function ($event) {
               return _vm.emitEvent("mouseenter", $event)
             },
-            mouseover: function($event) {
+            mouseover: function ($event) {
               return _vm.emitEvent("mouseover", $event)
             },
-            mouseout: function($event) {
+            mouseout: function ($event) {
               return _vm.emitEvent("mouseout", $event)
             },
-            mousemove: function($event) {
+            mousemove: function ($event) {
               return _vm.emitEvent("mousemove", $event)
             },
-            mousedown: function($event) {
+            mousedown: function ($event) {
               return _vm.emitEvent("mousedown", $event)
             },
-            mouseup: function($event) {
+            mouseup: function ($event) {
               return _vm.emitEvent("mouseup", $event)
             },
-            mousewheel: function($event) {
+            mousewheel: function ($event) {
               return _vm.emitEvent("mousewheel", $event)
             },
-            touchstart: function($event) {
+            touchstart: function ($event) {
               return _vm.emitEvent("touchstart", $event)
             },
-            touchmove: function($event) {
+            touchmove: function ($event) {
               return _vm.emitEvent("touchmove", $event)
             },
-            touchend: function($event) {
+            touchend: function ($event) {
               return _vm.emitEvent("touchend", $event)
-            }
-          }
+            },
+          },
         },
         [
           _c("defs", [
             _c("clipPath", { attrs: { id: _vm.clipPathId } }, [
-              _c("polygon", { attrs: { points: _vm.getPoints } })
-            ])
+              _c("polygon", { attrs: { points: _vm.getPoints } }),
+            ]),
           ]),
           _vm._v(" "),
           _c("polygon", {
             staticClass:
               "gantt-elastic__chart-row-bar-polygon gantt-elastic__chart-row-task-polygon",
-            style: Object.assign(
-              {},
-              _vm.root.style["chart-row-bar-polygon"],
-              _vm.root.style["chart-row-task-polygon"],
-              _vm.task.style["base"],
-              _vm.task.style["chart-row-bar-polygon"]
-            ),
-            attrs: { points: _vm.getPoints }
+            style: {
+              ..._vm.root.style["chart-row-bar-polygon"],
+              ..._vm.root.style["chart-row-task-polygon"],
+              ..._vm.task.style["base"],
+              ..._vm.task.style["chart-row-bar-polygon"],
+              ...(_vm.root.state.options.showCritical && _vm.task.isCritical
+                ? _vm.root.style["chart-row-critical-task-polygon"]
+                : {}),
+              ...(_vm.root.state.options.showCritical && _vm.task.isCritical
+                ? _vm.task.style["chart-row-critical-task-polygon"]
+                : {}),
+            },
+            attrs: { points: _vm.getPoints },
           }),
           _vm._v(" "),
           _c("progress-bar", {
             attrs: {
               task: _vm.task,
-              "clip-path": "url(#" + _vm.clipPathId + ")"
-            }
-          })
+              "clip-path": "url(#" + _vm.clipPathId + ")",
+            },
+          }),
         ],
         1
       ),
       _vm._v(" "),
       _vm.root.state.options.chart.text.display
         ? _c("chart-text", { attrs: { task: _vm.task } })
-        : _vm._e()
+        : _vm._e(),
     ],
     1
   )
 }
-var Taskvue_type_template_id_e9c23eca_staticRenderFns = []
-Taskvue_type_template_id_e9c23eca_render._withStripped = true
+var Taskvue_type_template_id_1a1f87ca_staticRenderFns = []
+Taskvue_type_template_id_1a1f87ca_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Chart/Row/Task.vue?vue&type=template&id=e9c23eca&
+// CONCATENATED MODULE: ./src/components/Chart/Row/Task.vue?vue&type=template&id=1a1f87ca
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Text.vue?vue&type=template&id=459c2fe4&
-var Textvue_type_template_id_459c2fe4_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Text.vue?vue&type=template&id=dfc2b57a
+var Textvue_type_template_id_dfc2b57a_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "svg",
     {
       staticClass: "gantt-elastic__chart-row-text-wrapper",
-      style: Object.assign({}, _vm.root.style["chart-row-text-wrapper"]),
+      style: { ..._vm.root.style["chart-row-text-wrapper"] },
       attrs: {
         x:
           _vm.task.x +
@@ -4078,8 +3745,8 @@ var Textvue_type_template_id_459c2fe4_render = function() {
           _vm.root.state.options.chart.text.offset,
         y: _vm.task.y - _vm.root.state.options.chart.grid.horizontal.gap,
         width: _vm.getWidth,
-        height: _vm.getHeight
-      }
+        height: _vm.getHeight,
+      },
     },
     [
       _c(
@@ -4090,8 +3757,8 @@ var Textvue_type_template_id_459c2fe4_render = function() {
             "div",
             {
               staticClass: "gantt-elastic__chart-row-text",
-              style: Object.assign({}, _vm.root.style["chart-row-text"]),
-              attrs: { xmlns: "http://www.w3.org/1999/xhtml" }
+              style: { ..._vm.root.style["chart-row-text"] },
+              attrs: { xmlns: "http://www.w3.org/1999/xhtml" },
             },
             [
               !_vm.html
@@ -4100,12 +3767,11 @@ var Textvue_type_template_id_459c2fe4_render = function() {
                     {
                       staticClass:
                         "gantt-elastic__chart-row-text-content gantt-elastic__chart-row-text-content--text",
-                      style: Object.assign(
-                        {},
-                        _vm.root.style["chart-row-text-content"],
-                        _vm.root.style["chart-row-text-content--text"],
-                        _vm.contentStyle
-                      )
+                      style: {
+                        ..._vm.root.style["chart-row-text-content"],
+                        ..._vm.root.style["chart-row-text-content--text"],
+                        ..._vm.contentStyle,
+                      },
                     },
                     [_c("div", [_vm._v(_vm._s(_vm.task.label))])]
                   )
@@ -4115,81 +3781,30 @@ var Textvue_type_template_id_459c2fe4_render = function() {
                 ? _c("div", {
                     staticClass:
                       "gantt-elastic__chart-row-text-content gantt-elastic__chart-row-text-content--html",
-                    style: Object.assign(
-                      {},
-                      _vm.root.style["chart-row-text-content"],
-                      _vm.root.style["chart-row-text-content--html"],
-                      _vm.contentStyle
-                    ),
-                    domProps: { innerHTML: _vm._s(_vm.task.label) }
+                    style: {
+                      ..._vm.root.style["chart-row-text-content"],
+                      ..._vm.root.style["chart-row-text-content--html"],
+                      ..._vm.contentStyle,
+                    },
+                    domProps: { innerHTML: _vm._s(_vm.task.label) },
                   })
-                : _vm._e()
+                : _vm._e(),
             ]
-          )
+          ),
         ]
-      )
-    ],
-    1
+      ),
+    ]
   )
 }
-var Textvue_type_template_id_459c2fe4_staticRenderFns = []
-Textvue_type_template_id_459c2fe4_render._withStripped = true
+var Textvue_type_template_id_dfc2b57a_staticRenderFns = []
+Textvue_type_template_id_dfc2b57a_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Chart/Text.vue?vue&type=template&id=459c2fe4&
+// CONCATENATED MODULE: ./src/components/Chart/Text.vue?vue&type=template&id=dfc2b57a
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Text.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Text.vue?vue&type=script&lang=js
 
-/* harmony default export */ var Textvue_type_script_lang_js_ = ({
+/* harmony default export */ var Textvue_type_script_lang_js = ({
   name: 'ChartText',
   inject: ['root'],
   props: ['task'],
@@ -4245,8 +3860,8 @@ Textvue_type_template_id_459c2fe4_render._withStripped = true
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Chart/Text.vue?vue&type=script&lang=js&
- /* harmony default export */ var Chart_Textvue_type_script_lang_js_ = (Textvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Chart/Text.vue?vue&type=script&lang=js
+ /* harmony default export */ var Chart_Textvue_type_script_lang_js = (Textvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Chart/Text.vue
 
 
@@ -4256,9 +3871,9 @@ Textvue_type_template_id_459c2fe4_render._withStripped = true
 /* normalize component */
 
 var Text_component = normalizeComponent(
-  Chart_Textvue_type_script_lang_js_,
-  Textvue_type_template_id_459c2fe4_render,
-  Textvue_type_template_id_459c2fe4_staticRenderFns,
+  Chart_Textvue_type_script_lang_js,
+  Textvue_type_template_id_dfc2b57a_render,
+  Textvue_type_template_id_dfc2b57a_staticRenderFns,
   false,
   null,
   null,
@@ -4266,24 +3881,19 @@ var Text_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var Text_api; }
-Text_component.options.__file = "src/components/Chart/Text.vue"
 /* harmony default export */ var Text = (Text_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/ProgressBar.vue?vue&type=template&id=4bc39355&
-var ProgressBarvue_type_template_id_4bc39355_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/ProgressBar.vue?vue&type=template&id=6e839ac8
+var ProgressBarvue_type_template_id_6e839ac8_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "g",
     {
       staticClass: "gantt-elastic__chart-row-progress-bar-wrapper",
-      style: Object.assign(
-        {},
-        _vm.root.style["chart-row-progress-bar-wrapper"],
-        _vm.task.style["chart-row-progress-bar-wrapper"]
-      )
+      style: {
+        ..._vm.root.style["chart-row-progress-bar-wrapper"],
+        ..._vm.task.style["chart-row-progress-bar-wrapper"],
+      },
     },
     [
       _c("defs", [
@@ -4295,37 +3905,35 @@ var ProgressBarvue_type_template_id_4bc39355_render = function() {
               width: _vm.root.state.options.chart.progress.width,
               height: _vm.root.state.options.chart.progress.width,
               patternTransform: "rotate(45 0 0)",
-              patternUnits: "userSpaceOnUse"
-            }
+              patternUnits: "userSpaceOnUse",
+            },
           },
           [
             _c("line", {
               staticClass: "chart-row-progress-bar-line",
-              style: Object.assign(
-                {},
-                _vm.root.style["chart-row-progress-bar-line"],
-                _vm.task.style["chart-row-progress-bar-line"]
-              ),
+              style: {
+                ..._vm.root.style["chart-row-progress-bar-line"],
+                ..._vm.task.style["chart-row-progress-bar-line"],
+              },
               attrs: {
                 x1: "0",
                 y1: "0",
                 x2: "0",
-                y2: _vm.root.state.options.chart.progress.width
-              }
-            })
+                y2: _vm.root.state.options.chart.progress.width,
+              },
+            }),
           ]
-        )
+        ),
       ]),
       _vm._v(" "),
       _vm.root.state.options.chart.progress.bar
         ? _c("rect", {
             staticClass: "gantt-elastic__chart-row-progress-bar-solid",
-            style: Object.assign(
-              {},
-              _vm.root.style["chart-row-progress-bar-solid"],
-              _vm.task.style["chart-row-progress-bar-solid"]
-            ),
-            attrs: { x: "0", y: "0", width: _vm.getProgressWidth }
+            style: {
+              ..._vm.root.style["chart-row-progress-bar-solid"],
+              ..._vm.task.style["chart-row-progress-bar-solid"],
+            },
+            attrs: { x: "0", y: "0", width: _vm.getProgressWidth },
           })
         : _vm._e(),
       _vm._v(" "),
@@ -4333,104 +3941,41 @@ var ProgressBarvue_type_template_id_4bc39355_render = function() {
         ? _c("g", [
             _c("rect", {
               staticClass: "gantt-elastic__chart-row-progress-bar-pattern",
-              style: Object.assign(
-                {},
-                _vm.root.style["chart-row-progress-bar-pattern"],
-                _vm.task.style["chart-row-progress-bar-pattern"]
-              ),
+              style: {
+                ..._vm.root.style["chart-row-progress-bar-pattern"],
+                ..._vm.task.style["chart-row-progress-bar-pattern"],
+              },
               attrs: {
                 x: _vm.getProgressWidth,
                 y: "0",
                 width: 100 - _vm.task.progress + "%",
-                height: "100%"
-              }
+                height: "100%",
+              },
             }),
             _vm._v(" "),
             _c("path", {
               staticClass: "gantt-elastic__chart-row-progress-bar-outline",
-              style: Object.assign(
-                {},
-                _vm.root.style["chart-row-progress-bar-outline"],
-                _vm.task.style["base"],
-                _vm.task.style["chart-row-progress-bar-outline"]
-              ),
-              attrs: { d: _vm.getLinePoints }
-            })
+              style: {
+                ..._vm.root.style["chart-row-progress-bar-outline"],
+                ..._vm.task.style["base"],
+                ..._vm.task.style["chart-row-progress-bar-outline"],
+              },
+              attrs: { d: _vm.getLinePoints },
+            }),
           ])
-        : _vm._e()
+        : _vm._e(),
     ]
   )
 }
-var ProgressBarvue_type_template_id_4bc39355_staticRenderFns = []
-ProgressBarvue_type_template_id_4bc39355_render._withStripped = true
+var ProgressBarvue_type_template_id_6e839ac8_staticRenderFns = []
+ProgressBarvue_type_template_id_6e839ac8_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Chart/ProgressBar.vue?vue&type=template&id=4bc39355&
+// CONCATENATED MODULE: ./src/components/Chart/ProgressBar.vue?vue&type=template&id=6e839ac8
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/ProgressBar.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/ProgressBar.vue?vue&type=script&lang=js
 
-/* harmony default export */ var ProgressBarvue_type_script_lang_js_ = ({
+/* harmony default export */ var ProgressBarvue_type_script_lang_js = ({
   name: 'ProgressBar',
   inject: ['root'],
   props: ['task'],
@@ -4485,8 +4030,8 @@ ProgressBarvue_type_template_id_4bc39355_render._withStripped = true
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Chart/ProgressBar.vue?vue&type=script&lang=js&
- /* harmony default export */ var Chart_ProgressBarvue_type_script_lang_js_ = (ProgressBarvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Chart/ProgressBar.vue?vue&type=script&lang=js
+ /* harmony default export */ var Chart_ProgressBarvue_type_script_lang_js = (ProgressBarvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Chart/ProgressBar.vue
 
 
@@ -4496,9 +4041,9 @@ ProgressBarvue_type_template_id_4bc39355_render._withStripped = true
 /* normalize component */
 
 var ProgressBar_component = normalizeComponent(
-  Chart_ProgressBarvue_type_script_lang_js_,
-  ProgressBarvue_type_template_id_4bc39355_render,
-  ProgressBarvue_type_template_id_4bc39355_staticRenderFns,
+  Chart_ProgressBarvue_type_script_lang_js,
+  ProgressBarvue_type_template_id_6e839ac8_render,
+  ProgressBarvue_type_template_id_6e839ac8_staticRenderFns,
   false,
   null,
   null,
@@ -4506,9 +4051,6 @@ var ProgressBar_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var ProgressBar_api; }
-ProgressBar_component.options.__file = "src/components/Chart/ProgressBar.vue"
 /* harmony default export */ var ProgressBar = (ProgressBar_component.exports);
 // CONCATENATED MODULE: ./src/components/Chart/Row/Task.mixin.js
 /**
@@ -4564,87 +4106,13 @@ ProgressBar_component.options.__file = "src/components/Chart/ProgressBar.vue"
   }
 });
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Task.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Task.vue?vue&type=script&lang=js
 
 
 
 
 
-/* harmony default export */ var Taskvue_type_script_lang_js_ = ({
+/* harmony default export */ var Taskvue_type_script_lang_js = ({
   name: 'Task',
   components: {
     ChartText: Text,
@@ -4679,8 +4147,8 @@ ProgressBar_component.options.__file = "src/components/Chart/ProgressBar.vue"
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Chart/Row/Task.vue?vue&type=script&lang=js&
- /* harmony default export */ var Row_Taskvue_type_script_lang_js_ = (Taskvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Chart/Row/Task.vue?vue&type=script&lang=js
+ /* harmony default export */ var Row_Taskvue_type_script_lang_js = (Taskvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Chart/Row/Task.vue
 
 
@@ -4690,9 +4158,9 @@ ProgressBar_component.options.__file = "src/components/Chart/ProgressBar.vue"
 /* normalize component */
 
 var Task_component = normalizeComponent(
-  Row_Taskvue_type_script_lang_js_,
-  Taskvue_type_template_id_e9c23eca_render,
-  Taskvue_type_template_id_e9c23eca_staticRenderFns,
+  Row_Taskvue_type_script_lang_js,
+  Taskvue_type_template_id_1a1f87ca_render,
+  Taskvue_type_template_id_1a1f87ca_staticRenderFns,
   false,
   null,
   null,
@@ -4700,26 +4168,21 @@ var Task_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var Task_api; }
-Task_component.options.__file = "src/components/Chart/Row/Task.vue"
 /* harmony default export */ var Task = (Task_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Milestone.vue?vue&type=template&id=3013006c&
-var Milestonevue_type_template_id_3013006c_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Milestone.vue?vue&type=template&id=6d69cd05
+var Milestonevue_type_template_id_6d69cd05_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "g",
     {
       staticClass:
         "gantt-elastic__chart-row-bar-wrapper gantt-elastic__chart-row-milestone-wrapper",
-      style: Object.assign(
-        {},
-        _vm.root.style["chart-row-bar-wrapper"],
-        _vm.root.style["chart-row-milestone-wrapper"],
-        _vm.task.style["chart-row-bar-wrapper"]
-      )
+      style: {
+        ..._vm.root.style["chart-row-bar-wrapper"],
+        ..._vm.root.style["chart-row-milestone-wrapper"],
+        ..._vm.task.style["chart-row-bar-wrapper"],
+      },
     },
     [
       _vm.displayExpander
@@ -4728,12 +4191,11 @@ var Milestonevue_type_template_id_3013006c_render = function() {
             {
               staticClass:
                 "gantt-elastic__chart-expander gantt-elastic__chart-expander--milestone",
-              style: Object.assign(
-                {},
-                _vm.root.style["chart-expander"],
-                _vm.root.style["chart-expander--milestone"],
-                _vm.task.style["chart-expander"]
-              ),
+              style: {
+                ..._vm.root.style["chart-expander"],
+                ..._vm.root.style["chart-expander--milestone"],
+                ..._vm.task.style["chart-expander"],
+              },
               attrs: {
                 x:
                   _vm.task.x -
@@ -4745,17 +4207,17 @@ var Milestonevue_type_template_id_3013006c_render = function() {
                     _vm.root.state.options.chart.expander.size) /
                     2,
                 width: _vm.root.state.options.chart.expander.size,
-                height: _vm.root.state.options.chart.expander.size
-              }
+                height: _vm.root.state.options.chart.expander.size,
+              },
             },
             [
               _c("expander", {
                 attrs: {
                   tasks: [_vm.task],
                   options: _vm.root.state.options.chart.expander,
-                  type: "chart"
-                }
-              })
+                  type: "chart",
+                },
+              }),
             ],
             1
           )
@@ -4766,180 +4228,104 @@ var Milestonevue_type_template_id_3013006c_render = function() {
         {
           staticClass:
             "gantt-elastic__chart-row-bar gantt-elastic__chart-row-milestone",
-          style: Object.assign(
-            {},
-            _vm.root.style["chart-row-bar"],
-            _vm.root.style["chart-row-milestone"],
-            _vm.task.style["chart-row-bar"]
-          ),
+          style: {
+            ..._vm.root.style["chart-row-bar"],
+            ..._vm.root.style["chart-row-milestone"],
+            ..._vm.task.style["chart-row-bar"],
+          },
           attrs: {
             x: _vm.task.x,
             y: _vm.task.y,
             width: _vm.task.width,
             height: _vm.task.height,
-            viewBox: "0 0 " + _vm.task.width + " " + _vm.task.height,
-            xmlns: "http://www.w3.org/2000/svg"
+            viewBox: `0 0 ${_vm.task.width} ${_vm.task.height}`,
+            xmlns: "http://www.w3.org/2000/svg",
           },
           on: {
-            click: function($event) {
+            click: function ($event) {
               return _vm.emitEvent("click", $event)
             },
-            mouseenter: function($event) {
+            mouseenter: function ($event) {
               return _vm.emitEvent("mouseenter", $event)
             },
-            mouseover: function($event) {
+            mouseover: function ($event) {
               return _vm.emitEvent("mouseover", $event)
             },
-            mouseout: function($event) {
+            mouseout: function ($event) {
               return _vm.emitEvent("mouseout", $event)
             },
-            mousemove: function($event) {
+            mousemove: function ($event) {
               return _vm.emitEvent("mousemove", $event)
             },
-            mousedown: function($event) {
+            mousedown: function ($event) {
               return _vm.emitEvent("mousedown", $event)
             },
-            mouseup: function($event) {
+            mouseup: function ($event) {
               return _vm.emitEvent("mouseup", $event)
             },
-            mousewheel: function($event) {
+            mousewheel: function ($event) {
               return _vm.emitEvent("mousewheel", $event)
             },
-            touchstart: function($event) {
+            touchstart: function ($event) {
               return _vm.emitEvent("touchstart", $event)
             },
-            touchmove: function($event) {
+            touchmove: function ($event) {
               return _vm.emitEvent("touchmove", $event)
             },
-            touchend: function($event) {
+            touchend: function ($event) {
               return _vm.emitEvent("touchend", $event)
-            }
-          }
+            },
+          },
         },
         [
           _c("defs", [
             _c("clipPath", { attrs: { id: _vm.clipPathId } }, [
-              _c("polygon", { attrs: { points: _vm.getPoints } })
-            ])
+              _c("polygon", { attrs: { points: _vm.getPoints } }),
+            ]),
           ]),
           _vm._v(" "),
           _c("polygon", {
             staticClass:
               "gantt-elastic__chart-row-bar-polygon gantt-elastic__chart-row-milestone-polygon",
-            style: Object.assign(
-              {},
-              _vm.root.style["chart-row-bar-polygon"],
-              _vm.root.style["chart-row-milestone-polygon"],
-              _vm.task.style["base"],
-              _vm.task.style["chart-row-bar-polygon"]
-            ),
-            attrs: { points: _vm.getPoints }
+            style: {
+              ..._vm.root.style["chart-row-bar-polygon"],
+              ..._vm.root.style["chart-row-milestone-polygon"],
+              ..._vm.task.style["base"],
+              ..._vm.task.style["chart-row-bar-polygon"],
+            },
+            attrs: { points: _vm.getPoints },
           }),
           _vm._v(" "),
           _c("progress-bar", {
             attrs: {
               task: _vm.task,
-              "clip-path": "url(#" + _vm.clipPathId + ")"
-            }
-          })
+              "clip-path": "url(#" + _vm.clipPathId + ")",
+            },
+          }),
         ],
         1
       ),
       _vm._v(" "),
       _vm.root.state.options.chart.text.display
         ? _c("chart-text", { attrs: { task: _vm.task } })
-        : _vm._e()
+        : _vm._e(),
     ],
     1
   )
 }
-var Milestonevue_type_template_id_3013006c_staticRenderFns = []
-Milestonevue_type_template_id_3013006c_render._withStripped = true
+var Milestonevue_type_template_id_6d69cd05_staticRenderFns = []
+Milestonevue_type_template_id_6d69cd05_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Chart/Row/Milestone.vue?vue&type=template&id=3013006c&
+// CONCATENATED MODULE: ./src/components/Chart/Row/Milestone.vue?vue&type=template&id=6d69cd05
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Milestone.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Milestone.vue?vue&type=script&lang=js
 
 
 
 
 
-/* harmony default export */ var Milestonevue_type_script_lang_js_ = ({
+/* harmony default export */ var Milestonevue_type_script_lang_js = ({
   name: 'Milestone',
   components: {
     ChartText: Text,
@@ -4984,8 +4370,8 @@ Milestonevue_type_template_id_3013006c_render._withStripped = true
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Chart/Row/Milestone.vue?vue&type=script&lang=js&
- /* harmony default export */ var Row_Milestonevue_type_script_lang_js_ = (Milestonevue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Chart/Row/Milestone.vue?vue&type=script&lang=js
+ /* harmony default export */ var Row_Milestonevue_type_script_lang_js = (Milestonevue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Chart/Row/Milestone.vue
 
 
@@ -4995,9 +4381,9 @@ Milestonevue_type_template_id_3013006c_render._withStripped = true
 /* normalize component */
 
 var Milestone_component = normalizeComponent(
-  Row_Milestonevue_type_script_lang_js_,
-  Milestonevue_type_template_id_3013006c_render,
-  Milestonevue_type_template_id_3013006c_staticRenderFns,
+  Row_Milestonevue_type_script_lang_js,
+  Milestonevue_type_template_id_6d69cd05_render,
+  Milestonevue_type_template_id_6d69cd05_staticRenderFns,
   false,
   null,
   null,
@@ -5005,26 +4391,21 @@ var Milestone_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var Milestone_api; }
-Milestone_component.options.__file = "src/components/Chart/Row/Milestone.vue"
 /* harmony default export */ var Milestone = (Milestone_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Project.vue?vue&type=template&id=077bbd73&
-var Projectvue_type_template_id_077bbd73_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Project.vue?vue&type=template&id=5a17b514
+var Projectvue_type_template_id_5a17b514_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
   return _c(
     "g",
     {
       staticClass:
         "gantt-elastic__chart-row-bar-wrapper gantt-elastic__chart-row-project-wrapper",
-      style: Object.assign(
-        {},
-        _vm.root.style["chart-row-bar-wrapper"],
-        _vm.root.style["chart-row-project-wrapper"],
-        _vm.task.style["chart-row-bar-wrapper"]
-      )
+      style: {
+        ..._vm.root.style["chart-row-bar-wrapper"],
+        ..._vm.root.style["chart-row-project-wrapper"],
+        ..._vm.task.style["chart-row-bar-wrapper"],
+      },
     },
     [
       _vm.displayExpander
@@ -5033,12 +4414,11 @@ var Projectvue_type_template_id_077bbd73_render = function() {
             {
               staticClass:
                 "gantt-elastic__chart-expander gantt-elastic__chart-expander--project",
-              style: Object.assign(
-                {},
-                _vm.root.style["chart-expander"],
-                _vm.root.style["chart-expander--project"],
-                _vm.task.style["chart-expander"]
-              ),
+              style: {
+                ..._vm.root.style["chart-expander"],
+                ..._vm.root.style["chart-expander--project"],
+                ..._vm.task.style["chart-expander"],
+              },
               attrs: {
                 x:
                   _vm.task.x -
@@ -5050,17 +4430,17 @@ var Projectvue_type_template_id_077bbd73_render = function() {
                     _vm.root.state.options.chart.expander.size) /
                     2,
                 width: _vm.root.state.options.chart.expander.size,
-                height: _vm.root.state.options.chart.expander.size
-              }
+                height: _vm.root.state.options.chart.expander.size,
+              },
             },
             [
               _c("expander", {
                 attrs: {
                   tasks: [_vm.task],
                   options: _vm.root.state.options.chart.expander,
-                  type: "chart"
-                }
-              })
+                  type: "chart",
+                },
+              }),
             ],
             1
           )
@@ -5071,180 +4451,104 @@ var Projectvue_type_template_id_077bbd73_render = function() {
         {
           staticClass:
             "gantt-elastic__chart-row-bar gantt-elastic__chart-row-project",
-          style: Object.assign(
-            {},
-            _vm.root.style["chart-row-bar"],
-            _vm.root.style["chart-row-project"],
-            _vm.task.style["chart-row-bar"]
-          ),
+          style: {
+            ..._vm.root.style["chart-row-bar"],
+            ..._vm.root.style["chart-row-project"],
+            ..._vm.task.style["chart-row-bar"],
+          },
           attrs: {
             x: _vm.task.x,
             y: _vm.task.y,
             width: _vm.task.width,
             height: _vm.task.height,
-            viewBox: "0 0 " + _vm.task.width + " " + _vm.task.height,
-            xmlns: "http://www.w3.org/2000/svg"
+            viewBox: `0 0 ${_vm.task.width} ${_vm.task.height}`,
+            xmlns: "http://www.w3.org/2000/svg",
           },
           on: {
-            click: function($event) {
+            click: function ($event) {
               return _vm.emitEvent("click", $event)
             },
-            mouseenter: function($event) {
+            mouseenter: function ($event) {
               return _vm.emitEvent("mouseenter", $event)
             },
-            mouseover: function($event) {
+            mouseover: function ($event) {
               return _vm.emitEvent("mouseover", $event)
             },
-            mouseout: function($event) {
+            mouseout: function ($event) {
               return _vm.emitEvent("mouseout", $event)
             },
-            mousemove: function($event) {
+            mousemove: function ($event) {
               return _vm.emitEvent("mousemove", $event)
             },
-            mousedown: function($event) {
+            mousedown: function ($event) {
               return _vm.emitEvent("mousedown", $event)
             },
-            mouseup: function($event) {
+            mouseup: function ($event) {
               return _vm.emitEvent("mouseup", $event)
             },
-            mousewheel: function($event) {
+            mousewheel: function ($event) {
               return _vm.emitEvent("mousewheel", $event)
             },
-            touchstart: function($event) {
+            touchstart: function ($event) {
               return _vm.emitEvent("touchstart", $event)
             },
-            touchmove: function($event) {
+            touchmove: function ($event) {
               return _vm.emitEvent("touchmove", $event)
             },
-            touchend: function($event) {
+            touchend: function ($event) {
               return _vm.emitEvent("touchend", $event)
-            }
-          }
+            },
+          },
         },
         [
           _c("defs", [
             _c("clipPath", { attrs: { id: _vm.clipPathId } }, [
-              _c("path", { attrs: { d: _vm.getPoints } })
-            ])
+              _c("path", { attrs: { d: _vm.getPoints } }),
+            ]),
           ]),
           _vm._v(" "),
           _c("path", {
             staticClass:
               "gantt-elastic__chart-row-bar-polygon gantt-elastic__chart-row-project-polygon",
-            style: Object.assign(
-              {},
-              _vm.root.style["chart-row-bar-polygon"],
-              _vm.root.style["chart-row-project-polygon"],
-              _vm.task.style["base"],
-              _vm.task.style["chart-row-bar-polygon"]
-            ),
-            attrs: { d: _vm.getPoints }
+            style: {
+              ..._vm.root.style["chart-row-bar-polygon"],
+              ..._vm.root.style["chart-row-project-polygon"],
+              ..._vm.task.style["base"],
+              ..._vm.task.style["chart-row-bar-polygon"],
+            },
+            attrs: { d: _vm.getPoints },
           }),
           _vm._v(" "),
           _c("progress-bar", {
             attrs: {
               task: _vm.task,
-              "clip-path": "url(#" + _vm.clipPathId + ")"
-            }
-          })
+              "clip-path": "url(#" + _vm.clipPathId + ")",
+            },
+          }),
         ],
         1
       ),
       _vm._v(" "),
       _vm.root.state.options.chart.text.display
         ? _c("chart-text", { attrs: { task: _vm.task } })
-        : _vm._e()
+        : _vm._e(),
     ],
     1
   )
 }
-var Projectvue_type_template_id_077bbd73_staticRenderFns = []
-Projectvue_type_template_id_077bbd73_render._withStripped = true
+var Projectvue_type_template_id_5a17b514_staticRenderFns = []
+Projectvue_type_template_id_5a17b514_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/components/Chart/Row/Project.vue?vue&type=template&id=077bbd73&
+// CONCATENATED MODULE: ./src/components/Chart/Row/Project.vue?vue&type=template&id=5a17b514
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Project.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Row/Project.vue?vue&type=script&lang=js
 
 
 
 
 
-/* harmony default export */ var Projectvue_type_script_lang_js_ = ({
+/* harmony default export */ var Projectvue_type_script_lang_js = ({
   name: 'Project',
   components: {
     ChartText: Text,
@@ -5303,8 +4607,8 @@ Projectvue_type_template_id_077bbd73_render._withStripped = true
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Chart/Row/Project.vue?vue&type=script&lang=js&
- /* harmony default export */ var Row_Projectvue_type_script_lang_js_ = (Projectvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Chart/Row/Project.vue?vue&type=script&lang=js
+ /* harmony default export */ var Row_Projectvue_type_script_lang_js = (Projectvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Chart/Row/Project.vue
 
 
@@ -5314,9 +4618,9 @@ Projectvue_type_template_id_077bbd73_render._withStripped = true
 /* normalize component */
 
 var Project_component = normalizeComponent(
-  Row_Projectvue_type_script_lang_js_,
-  Projectvue_type_template_id_077bbd73_render,
-  Projectvue_type_template_id_077bbd73_staticRenderFns,
+  Row_Projectvue_type_script_lang_js,
+  Projectvue_type_template_id_5a17b514_render,
+  Projectvue_type_template_id_5a17b514_staticRenderFns,
   false,
   null,
   null,
@@ -5324,81 +4628,8 @@ var Project_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var Project_api; }
-Project_component.options.__file = "src/components/Chart/Row/Project.vue"
 /* harmony default export */ var Project = (Project_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Chart.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/Chart/Chart.vue?vue&type=script&lang=js
 
 
 
@@ -5407,7 +4638,7 @@ Project_component.options.__file = "src/components/Chart/Row/Project.vue"
 
 
 
-/* harmony default export */ var Chartvue_type_script_lang_js_ = ({
+/* harmony default export */ var Chartvue_type_script_lang_js = ({
   name: 'Chart',
   components: {
     Grid: Grid,
@@ -5447,8 +4678,8 @@ Project_component.options.__file = "src/components/Chart/Row/Project.vue"
   }
 });
 
-// CONCATENATED MODULE: ./src/components/Chart/Chart.vue?vue&type=script&lang=js&
- /* harmony default export */ var Chart_Chartvue_type_script_lang_js_ = (Chartvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/Chart/Chart.vue?vue&type=script&lang=js
+ /* harmony default export */ var Chart_Chartvue_type_script_lang_js = (Chartvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/Chart/Chart.vue
 
 
@@ -5458,9 +4689,9 @@ Project_component.options.__file = "src/components/Chart/Row/Project.vue"
 /* normalize component */
 
 var Chart_component = normalizeComponent(
-  Chart_Chartvue_type_script_lang_js_,
-  Chartvue_type_template_id_67c3f5cd_render,
-  Chartvue_type_template_id_67c3f5cd_staticRenderFns,
+  Chart_Chartvue_type_script_lang_js,
+  Chartvue_type_template_id_50d838ca_render,
+  Chartvue_type_template_id_50d838ca_staticRenderFns,
   false,
   null,
   null,
@@ -5468,109 +4699,15 @@ var Chart_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var Chart_api; }
-Chart_component.options.__file = "src/components/Chart/Chart.vue"
 /* harmony default export */ var Chart = (Chart_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/MainView.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/components/MainView.vue?vue&type=script&lang=js
 
 
 
 
 let ignoreScrollEvents = false;
 
-/* harmony default export */ var MainViewvue_type_script_lang_js_ = ({
+/* harmony default export */ var MainViewvue_type_script_lang_js = ({
   name: 'MainView',
   components: {
     TaskList: TaskList,
@@ -5762,8 +4899,8 @@ let ignoreScrollEvents = false;
   }
 });
 
-// CONCATENATED MODULE: ./src/components/MainView.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_MainViewvue_type_script_lang_js_ = (MainViewvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/MainView.vue?vue&type=script&lang=js
+ /* harmony default export */ var components_MainViewvue_type_script_lang_js = (MainViewvue_type_script_lang_js); 
 // CONCATENATED MODULE: ./src/components/MainView.vue
 
 
@@ -5773,9 +4910,9 @@ let ignoreScrollEvents = false;
 /* normalize component */
 
 var MainView_component = normalizeComponent(
-  components_MainViewvue_type_script_lang_js_,
-  MainViewvue_type_template_id_0bc4212e_render,
-  MainViewvue_type_template_id_0bc4212e_staticRenderFns,
+  components_MainViewvue_type_script_lang_js,
+  MainViewvue_type_template_id_606f6fb6_render,
+  MainViewvue_type_template_id_606f6fb6_staticRenderFns,
   false,
   null,
   null,
@@ -5783,9 +4920,6 @@ var MainView_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var MainView_api; }
-MainView_component.options.__file = "src/components/MainView.vue"
 /* harmony default export */ var MainView = (MainView_component.exports);
 // CONCATENATED MODULE: ./src/style.js
 /**
@@ -6059,6 +5193,10 @@ function getStyle(fontSize = '12px', fontFamily = 'Arial, sans-serif') {
     'chart-row-task-wrapper': {},
     'chart-row-task': {},
     'chart-row-task-polygon': {},
+    'chart-row-critical-task-polygon': {
+      stroke: '#e44b4b',
+      fill: '#e44b4b'
+    },
     'chart-row-progress-bar-wrapper': {},
     'chart-row-progress-bar': {},
     'chart-row-progress-bar-line': {
@@ -6081,6 +5219,11 @@ function getStyle(fontSize = '12px', fontFamily = 'Arial, sans-serif') {
     'chart-dependency-lines-path': {
       fill: 'transparent',
       stroke: '#FFa00090',
+      'stroke-width': 2
+    },
+    'chart-dependency-lines-critical-path': {
+      fill: 'transparent',
+      stroke: '#e44b4b',
       'stroke-width': 2
     },
     'chart-scroll-container': {},
@@ -6106,23 +5249,7 @@ function getStyle(fontSize = '12px', fontFamily = 'Arial, sans-serif') {
 // EXTERNAL MODULE: ./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
 var ResizeObserver_es = __webpack_require__(3);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/GanttElastic.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/GanttElastic.vue?vue&type=script&lang=js
 
 
 
@@ -7698,17 +6825,14 @@ const GanttElastic = {
     this.$emit('destroyed');
   }
 };
-/* harmony default export */ var GanttElasticvue_type_script_lang_js_ = (GanttElastic);
+/* harmony default export */ var GanttElasticvue_type_script_lang_js = (GanttElastic);
 
-// CONCATENATED MODULE: ./src/GanttElastic.vue?vue&type=script&lang=js&
- /* harmony default export */ var src_GanttElasticvue_type_script_lang_js_ = (GanttElasticvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/GanttElastic.vue?vue&type=style&index=0&lang=css&
-var GanttElasticvue_type_style_index_0_lang_css_ = __webpack_require__(5);
+// CONCATENATED MODULE: ./src/GanttElastic.vue?vue&type=script&lang=js
+ /* harmony default export */ var src_GanttElasticvue_type_script_lang_js = (GanttElasticvue_type_script_lang_js); 
+// EXTERNAL MODULE: ./src/GanttElastic.vue?vue&type=style&index=0&id=986f7942&prod&lang=css
+var GanttElasticvue_type_style_index_0_id_986f7942_prod_lang_css = __webpack_require__(5);
 
 // CONCATENATED MODULE: ./src/GanttElastic.vue
-/* concated harmony reexport mergeDeep */__webpack_require__.d(__webpack_exports__, "mergeDeep", function() { return mergeDeep; });
-/* concated harmony reexport mergeDeepReactive */__webpack_require__.d(__webpack_exports__, "mergeDeepReactive", function() { return mergeDeepReactive; });
-/* concated harmony reexport notEqualDeep */__webpack_require__.d(__webpack_exports__, "notEqualDeep", function() { return notEqualDeep; });
 
 
 
@@ -7718,7 +6842,7 @@ var GanttElasticvue_type_style_index_0_lang_css_ = __webpack_require__(5);
 /* normalize component */
 
 var GanttElastic_component = normalizeComponent(
-  src_GanttElasticvue_type_script_lang_js_,
+  src_GanttElasticvue_type_script_lang_js,
   render,
   staticRenderFns,
   false,
@@ -7728,9 +6852,6 @@ var GanttElastic_component = normalizeComponent(
   
 )
 
-/* hot reload */
-if (false) { var GanttElastic_api; }
-GanttElastic_component.options.__file = "src/GanttElastic.vue"
 /* harmony default export */ var src_GanttElastic = __webpack_exports__["default"] = (GanttElastic_component.exports);
 
 /***/ }),
@@ -7738,7 +6859,11 @@ GanttElastic_component.options.__file = "src/GanttElastic.vue"
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ addStylesClient; });
 
 // CONCATENATED MODULE: ./node_modules/vue-style-loader/lib/listToStyles.js
 /**
@@ -7770,7 +6895,6 @@ function listToStyles (parentId, list) {
 }
 
 // CONCATENATED MODULE: ./node_modules/vue-style-loader/lib/addStylesClient.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return addStylesClient; });
 /*
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra

@@ -62,7 +62,9 @@
           ...root.style['chart-row-bar-polygon'],
           ...root.style['chart-row-task-polygon'],
           ...task.style['base'],
-          ...task.style['chart-row-bar-polygon']
+          ...task.style['chart-row-bar-polygon'],
+          ...(root.state.options.showCritical&&task.isCritical?root.style['chart-row-critical-task-polygon']:{}),
+          ...(root.state.options.showCritical&&task.isCritical?task.style['chart-row-critical-task-polygon']:{})
         }"
         :points="getPoints"
       ></polygon>

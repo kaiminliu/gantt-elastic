@@ -1,7 +1,7 @@
 {
-  "name": "gantt-elastic",
-  "version": "1.0.12",
-  "description": "Gantt chart. Elastic javascript gantt chart. Vue gantt. Project manager responsive gantt. jquery gantt.",
+  "name": "@liuyou/gantt-elastic",
+  "version": "1.0.1",
+  "description": "在1.0.0版本上，新增控制列可以通过拖动改变宽度的属性",
   "main": "src/GanttElastic.vue",
   "dependencies": {
     "dayjs": "^1.8.16",
@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/neuronetio/gantt-elastic.git"
+    "url": "git+https://github.com/kaiminliu/gantt-elastic.git"
   },
   "keywords": [
     "gantt",
@@ -62,10 +62,14 @@
     "project",
     "task"
   ],
-  "author": "Rafal Pospiech <neuronet.io@gmail.com> (https://neuronet.io)",
+  "author": "fork neuronet's gantt-elastic",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/neuronetio/gantt-elastic/issues"
+    "url": "https://github.com/kaiminliu/gantt-elastic/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "postcss": {
     "plugins": {

@@ -148,7 +148,7 @@ export default function getStyle(fontSize = '12px', fontFamily = 'Arial, sans-se
       background: 'transparent',
       height: '100%',
       width: '6px',
-      cursor: 'col-resize',
+//      cursor: 'col-resize',
       display: 'inline-flex',
       'vertical-align': 'center'
     },

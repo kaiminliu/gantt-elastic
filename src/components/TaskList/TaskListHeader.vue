@@ -42,7 +42,8 @@
         class="gantt-elastic__task-list-header-resizer-wrapper"
         :style="{
           ...root.style['task-list-header-resizer-wrapper'],
-          ...column.style['task-list-header-resizer-wrapper']
+          ...column.style['task-list-header-resizer-wrapper'],
+          cursor: column.resizable ? 'col-resize' : 'default',
         }"
         :column="column"
         @mousedown="resizerMouseDown($event, column)"
@@ -114,7 +115,7 @@ export default {
      * Resizer mouse down event handler
      */
     resizerMouseDown(event, column) {
-      if (!this.resizer.moving) {
+      if (!this.resizer.moving && column.resizable) {
         this.resizer.moving = column;
         this.resizer.x = event.clientX;
         this.resizer.initialWidth = column.width;

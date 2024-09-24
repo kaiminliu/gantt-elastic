@@ -67,7 +67,7 @@
   "bugs": {
     "url": "https://github.com/kaiminliu/gantt-elastic/issues"
   },
-  "publishConfig": {
+ "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },

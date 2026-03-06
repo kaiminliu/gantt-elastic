@@ -1,7 +1,7 @@
 {
   "name": "@liuyou/gantt-elastic",
-  "version": "1.0.1",
-  "description": "在1.0.0版本上，新增控制列可以通过拖动改变宽度的属性",
+  "version": "1.0.2",
+  "description": "在1.0.1版本上，ItemColumn.vue可傳遞Function類型樣式",
   "main": "src/GanttElastic.vue",
   "dependencies": {
     "dayjs": "^1.8.16",

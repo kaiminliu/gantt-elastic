@@ -74,6 +74,18 @@ export default {
     }
   },
   computed: {
+
+    /**
+     * 新增：统一处理动态样式获取逻辑
+     * 如果 column.style 是函数，则执行并返回结果；否则直接返回 column.style
+     */
+    columnStyleObject() {
+      if (typeof this.column.style === 'function') {
+        return this.column.style(this.task) || {};
+      }
+      return this.column.style || {};
+    },
+
     /**
      * Should we display html or just text?
      *
@@ -101,7 +113,7 @@ export default {
     itemColumnStyle() {
       return {
         ...this.root.style['task-list-item-column'],
-        ...this.column.style['task-list-item-column'],
+        ...(this.columnStyleObject['task-list-item-column'] || {}),
         width: this.column.finalWidth + 'px',
         height: this.column.height + 'px'
       };
@@ -110,19 +122,19 @@ export default {
     wrapperStyle() {
       return {
         ...this.root.style['task-list-item-value-wrapper'],
-        ...this.column.style['task-list-item-value-wrapper']
+        ...(this.columnStyleObject['task-list-item-value-wrapper'] || {}),
       };
     },
 
     containerStyle() {
       return {
         ...this.root.style['task-list-item-value-container'],
-        ...this.column.style['task-list-item-value-container']
+        ...(this.columnStyleObject['task-list-item-value-container'] || {}),
       };
     },
 
     valueStyle() {
-      return { ...this.root.style['task-list-item-value'], ...this.column.style['task-list-item-value'] };
+      return { ...this.root.style['task-list-item-value'], ...(this.columnStyleObject['task-list-item-value'] || {}), };
     }
   }
 };
